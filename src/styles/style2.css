@@ -1,0 +1,21 @@
+.pane{
+    -fx-background-color:#4a4a4a;
+}
+.text-field{
+    -fx-text-fill:black;
+}
+#priorityChoiceBox{
+    -fx-text-fill:black;
+}
+.labels{
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+}
+.button{
+    /*-fx-background-radius: 50px;*/
+    -fx-text-fill:#F0FFFF;
+    -fx-background-color:#044752;
+}
+.button:hover{
+    -fx-cursor:hand;
+}

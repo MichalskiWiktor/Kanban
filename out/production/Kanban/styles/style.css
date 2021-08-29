@@ -1,0 +1,40 @@
+.pane{
+    -fx-background-color:#4a4a4a;
+}
+.button{
+    -fx-text-fill:#F0FFFF;
+    -fx-background-color:#044752;
+}
+.button:hover{
+    -fx-cursor:hand;
+}
+.label{
+    -fx-text-fill:#F0FFFF;
+    -fx-font-weight:bold;
+}
+.list-view{
+    -fx-background-radius: 20px;
+}
+.listCell{
+    -fx-text-fill:#403f3f;
+}
+.list-cell{
+    -fx-background-radius: 20px;
+    -fx-text-fill:#262626;
+}
+.list-cell:selected{
+    -fx-background-color:#044752;
+    -fx-text-fill:white;
+}
+.list-cell:selected .listCell{
+   -fx-text-fill:white;
+}
+.list-cell:hover{
+    -fx-cursor:hand;
+    -fx-text-fill:white;
+    -fx-background-color:#055b69;
+}
+.list-cell:hover .listCell{
+   -fx-text-fill:white;
+}
+

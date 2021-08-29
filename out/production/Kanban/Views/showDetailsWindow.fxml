@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="255.0" prefWidth="358.0" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShowDetailsWindowController">
+   <Label fx:id="idLabel" layoutX="25.0" layoutY="35.0" text="ID:">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="titleLabel" layoutX="25.0" layoutY="60.0" text="Title:">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="statusLabel" layoutX="25.0" layoutY="85.0" text="Status:">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="priorityLabel" layoutX="25.0" layoutY="110.0" text="Priority:">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="dateLabel" layoutX="25.0" layoutY="135.0" text="Deadline:">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="25.0" layoutY="160.0" prefHeight="100.0" prefWidth="324.0" text="Description:">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label layoutX="147.0" layoutY="10.0" text="Details:">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Label>
+</AnchorPane>
