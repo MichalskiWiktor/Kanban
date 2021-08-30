@@ -5,43 +5,65 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="1036.0" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainWindowController">
-   <ListView fx:id="toDoList" layoutX="149.0" layoutY="102.0" onMouseClicked="#handleMouseClickToDoList" prefHeight="418.0" prefWidth="217.0" />
-   <ListView fx:id="inProgressList" layoutX="448.0" layoutY="102.0" onMouseClicked="#handleMouseClickInProgressList" prefHeight="418.0" prefWidth="217.0" />
-   <ListView fx:id="doneList" layoutX="743.0" layoutY="102.0" onMouseClicked="#handleMouseClickDoneList" prefHeight="418.0" prefWidth="217.0" />
-   <Button layoutX="14.0" layoutY="140.0" mnemonicParsing="false" onAction="#addNewTask" text="Add new task">
-      <font>
-         <Font size="16.0" />
-      </font></Button>
-   <Button layoutX="39.0" layoutY="340.0" mnemonicParsing="false" onAction="#deleteTask" text="Delete">
-      <font>
-         <Font size="16.0" />
-      </font></Button>
-   <Button layoutX="37.0" layoutY="276.0" mnemonicParsing="false" onAction="#modifyTask" text="Modify">
-      <font>
-         <Font size="16.0" />
-      </font></Button>
-   <Button layoutX="18.0" layoutY="209.0" mnemonicParsing="false" onAction="#showDetailsWindow" text="Show details">
-      <font>
-         <Font size="16.0" />
-      </font></Button>
-   <Button layoutX="42.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveTask" text="Move">
-      <font>
-         <Font size="16.0" />
-      </font></Button>
    <Label layoutX="506.0" layoutY="14.0" text="Orders">
       <font>
          <Font size="34.0" />
       </font></Label>
-   <Label layoutX="828.0" layoutY="66.0" text="Done">
-      <font>
-         <Font size="20.0" />
-      </font></Label>
-   <Label layoutX="507.0" layoutY="66.0" text="In progress">
-      <font>
-         <Font size="20.0" />
-      </font></Label>
-   <Label layoutX="227.0" layoutY="66.0" text="To do">
-      <font>
-         <Font size="20.0" />
-      </font></Label>
+   <VBox layoutX="177.0" layoutY="69.0" prefHeight="445.0" prefWidth="217.0">
+      <children>
+         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="223.0" text="To do">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Label>
+         <ListView fx:id="toDoList" onMouseClicked="#handleMouseClickToDoList" prefHeight="418.0" prefWidth="217.0" />
+      </children></VBox>
+   <VBox layoutX="477.0" layoutY="69.0" prefHeight="445.0" prefWidth="217.0">
+      <children>
+         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="219.0" text="In progress">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Label>
+         <ListView fx:id="inProgressList" onMouseClicked="#handleMouseClickInProgressList" prefHeight="418.0" prefWidth="217.0" />
+      </children>
+   </VBox>
+   <VBox layoutX="777.0" layoutY="69.0" prefHeight="445.0" prefWidth="217.0">
+      <children>
+         <Label alignment="CENTER" prefHeight="30.0" prefWidth="218.0" text="Done">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Label>
+         <ListView fx:id="doneList" onMouseClicked="#handleMouseClickDoneList" prefHeight="418.0" prefWidth="217.0" />
+      </children>
+   </VBox>
+   <ToolBar layoutX="14.0" layoutY="42.0" prefHeight="472.0" prefWidth="173.0">
+      <items>
+         <Button mnemonicParsing="false" onAction="#showDetailsWindow" text="Show details">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#deleteTask" text="Delete">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#addNewTask" text="Add new task">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#modifyTask" text="Modify">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#moveTask" text="Move">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+      </items></ToolBar>
 </AnchorPane>
