@@ -18,10 +18,6 @@ public class AddNewTaskWindowController extends MainWindowController{
     @FXML private ChoiceBox <String> priorityChoiceBox;
     @FXML private DatePicker newDeadline;
     @FXML private TextArea newDescription;
-    Stage mainStage;
-    public void transferStage(Stage stage){
-        this.mainStage = stage;
-    }
     @FXML public void initialize(){
         this.loadItemsToChoiceBox();
         this.setDefaultDeadline();
@@ -59,6 +55,6 @@ public class AddNewTaskWindowController extends MainWindowController{
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
         newWindow.showWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        scene4Controller.transferMessage(message, this.mainStage, (Stage) this.newTitle.getScene().getWindow());
+        scene4Controller.transferMessage(message, (Stage) this.newTitle.getScene().getWindow());
     }
 }

@@ -19,10 +19,6 @@ public class ModifyTaskWindowController extends MainWindowController{
     @FXML private DatePicker modifiedDeadline;
     @FXML private TextArea modifiedDescription;
     private Order order;
-    Stage mainStage;
-    public void transferStage(Stage stage){
-        this.mainStage = stage;
-    }
     public void transferData(int id, String title, String description, int priority, String date, int status){
         this.order = new Order(id, priority, status, description, title, date);
         this.loadDataToFields();
@@ -64,9 +60,9 @@ public class ModifyTaskWindowController extends MainWindowController{
         }
     }
     public void createPopUpWindow(String message){
-        Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style2.css", 235, 92);
+        Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
         newWindow.showWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        scene4Controller.transferMessage(message, this.mainStage, (Stage) this.modifiedTitle.getScene().getWindow());
+        scene4Controller.transferMessage(message, (Stage) this.modifiedTitle.getScene().getWindow());
     }
 }

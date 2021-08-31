@@ -4,7 +4,9 @@ import Models.Window;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,16 +14,22 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Models.Order;
-
+/*Next to listviews add a small button that will refresh listviews*/
 public class MainWindowController{
     @FXML private ListView <Order> toDoList;
     @FXML private ListView <Order> inProgressList;
     @FXML private ListView <Order> doneList;
+    @FXML private Button refreshBtn;
     private final ArrayList <Order> orders = new ArrayList<>();
 
     @FXML public void initialize(){
         this.getDataFromDatabase();
         this.loadDataToLists();
+        ImageView imageView = new ImageView(getClass().getResource("/data/photos/refresh.png").toExternalForm());
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.setY(10);
+        this.refreshBtn.setGraphic(imageView);
     }
     public ResultSet connectToDatabase(String query){
         try{
@@ -81,11 +89,20 @@ public class MainWindowController{
         this.toDoList.getSelectionModel().clearSelection();
         this.inProgressList.getSelectionModel().clearSelection();
     }
+    public void refreshLists(){
+        this.clearAllListviews();
+        this.orders.clear();
+        this.getDataFromDatabase();
+        this.loadDataToLists();
+    }
+    public void clearAllListviews(){
+        this.toDoList.getItems().clear();
+        this.inProgressList.getItems().clear();
+        this.doneList.getItems().clear();
+    }
     public void addNewTask(){
         Window newWindow = new Window("Add New Task", "/Views/AddNewTaskWindow.fxml", "/styles/style2.css", 342, 353);
         newWindow.showWindow();
-        AddNewTaskWindowController scene4Controller = newWindow.getLoader().getController();
-        scene4Controller.transferStage((Stage) this.toDoList.getScene().getWindow());
     }
     public void showDetailsWindow(){
         if(this.toDoList.getSelectionModel().getSelectedItem() == null && this.inProgressList.getSelectionModel().getSelectedItem() == null && this.doneList.getSelectionModel().getSelectedItem() == null){
@@ -110,7 +127,6 @@ public class MainWindowController{
             Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/style2.css", 342, 353);
             newWindow.showWindow();
             ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
-            scene4Controller.transferStage((Stage) this.toDoList.getScene().getWindow());
             for(Order order : this.orders) {
                 if (order == this.toDoList.getSelectionModel().getSelectedItem() || order == this.inProgressList.getSelectionModel().getSelectedItem() || order == this.doneList.getSelectionModel().getSelectedItem()) {
                     scene4Controller.transferData(order.getId(), order.getTitle(), order.getDescription(), order.getPriority(), order.getDate(), order.getStatus());
@@ -161,7 +177,7 @@ public class MainWindowController{
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
         newWindow.showWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        scene4Controller.transferMessage(message, null, null);
+        scene4Controller.transferMessage(message, null);
     }
     public void resetWindow(){
         Window newWindow = new Window("Kanban", "/Views/MainWindow.fxml", "/styles/style.css", 1036, 552);
