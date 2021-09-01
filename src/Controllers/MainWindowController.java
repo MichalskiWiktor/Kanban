@@ -7,14 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Models.Order;
-/*Next to listviews add a small button that will refresh listviews*/
 public class MainWindowController{
     @FXML private ListView <Order> toDoList;
     @FXML private ListView <Order> inProgressList;
@@ -25,6 +23,9 @@ public class MainWindowController{
     @FXML public void initialize(){
         this.getDataFromDatabase();
         this.loadDataToLists();
+        this.initPhotos();
+    }
+    public void initPhotos(){
         ImageView imageView = new ImageView(getClass().getResource("/data/photos/refresh.png").toExternalForm());
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
@@ -105,86 +106,64 @@ public class MainWindowController{
         newWindow.showWindow();
     }
     public void showDetailsWindow(){
-        if(this.toDoList.getSelectionModel().getSelectedItem() == null && this.inProgressList.getSelectionModel().getSelectedItem() == null && this.doneList.getSelectionModel().getSelectedItem() == null){
-            this.createPopUpWindow("You have to pick an element!!");
-        }
-        else{
+        Order order = this.findSelectedOrder();
+        if(order!=null){
             Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/style.css", 358, 255);
             newWindow.showWindow();
             ShowDetailsWindowController scene4Controller = newWindow.getLoader().getController();
-            for(Order order : this.orders) {
-                if (order == this.toDoList.getSelectionModel().getSelectedItem() || order == this.inProgressList.getSelectionModel().getSelectedItem() || order == this.doneList.getSelectionModel().getSelectedItem()) {
-                    scene4Controller.transferData(order.getId(), order.getTitle(), order.getDescription(), order.getPriority(), order.getDate(), order.getStatus());
-                }
-            }
+            scene4Controller.transferData(order.getId(), order.getTitle(), order.getDescription(), order.getPriority(), order.getDate(), order.getStatus());
         }
+        else this.createPopUpWindow("You have to pick an element!!");
     }
     public void modifyTask(){
-        if(this.toDoList.getSelectionModel().getSelectedItem() == null && this.inProgressList.getSelectionModel().getSelectedItem() == null && this.doneList.getSelectionModel().getSelectedItem() == null){
-            this.createPopUpWindow("You have to pick an element!!");
-        }
-        else{
+        Order order = this.findSelectedOrder();
+        if(order!=null){
             Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/style2.css", 342, 353);
             newWindow.showWindow();
             ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
-            for(Order order : this.orders) {
-                if (order == this.toDoList.getSelectionModel().getSelectedItem() || order == this.inProgressList.getSelectionModel().getSelectedItem() || order == this.doneList.getSelectionModel().getSelectedItem()) {
-                    scene4Controller.transferData(order.getId(), order.getTitle(), order.getDescription(), order.getPriority(), order.getDate(), order.getStatus());
-                }
-            }
+            scene4Controller.transferData(order.getId(), order.getTitle(), order.getDescription(), order.getPriority(), order.getDate(), order.getStatus());
         }
+        else this.createPopUpWindow("You have to pick an element!!");
     }
     public void deleteTask(){
-        if(this.toDoList.getSelectionModel().getSelectedItem() == null && this.inProgressList.getSelectionModel().getSelectedItem() == null && this.doneList.getSelectionModel().getSelectedItem() == null){
-            this.createPopUpWindow("You have to pick an element!!");
-        }
-        else{
-            for(Order order : this.orders) {
-                if (order == this.toDoList.getSelectionModel().getSelectedItem() || order == this.inProgressList.getSelectionModel().getSelectedItem() || order == this.doneList.getSelectionModel().getSelectedItem()) {
-                    try {
-                        this.connectToDatabase(("DELETE FROM orders WHERE id=" + order.getId()));
-                        this.closeWindow();
-                        this.resetWindow();
-                    }
-                    catch(Exception exc){
-                        exc.printStackTrace();
-                    }
-                }
+        Order order = this.findSelectedOrder();
+        if(order!=null){
+            try{
+                this.connectToDatabase(("DELETE FROM orders WHERE id=" + order.getId()));
+                this.refreshLists();
+            }catch(Exception exc){
+                exc.printStackTrace();
             }
         }
+        else this.createPopUpWindow("You have to pick an element!!");
     }
     public void moveTask(){
-        if(this.toDoList.getSelectionModel().getSelectedItem() == null && this.inProgressList.getSelectionModel().getSelectedItem() == null && this.doneList.getSelectionModel().getSelectedItem() == null){
-            this.createPopUpWindow("You have to pick an element!!");
-        }
-        else{
-            for(Order order : this.orders) {
-                if (order == this.toDoList.getSelectionModel().getSelectedItem() || order == this.inProgressList.getSelectionModel().getSelectedItem() || order == this.doneList.getSelectionModel().getSelectedItem()) {
-                    if(order.getStatus()!=3){
-                        try{
-                            this.connectToDatabase(("UPDATE orders SET status = " + (order.getStatus() + 1) + " WHERE id=" + order.getId()));
-                            this.closeWindow();
-                            this.resetWindow();
-                        }catch(Exception exc){
-                            exc.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
+        Order order = this.findSelectedOrder();
+       if(order!=null){
+           try{
+               this.connectToDatabase(("UPDATE orders SET status = " + (order.getStatus() + 1) + " WHERE id=" + order.getId() + " AND status<>3"));
+               this.refreshLists();
+           }catch(Exception exc){
+               exc.printStackTrace();
+           }
+       }
+       else this.createPopUpWindow("You have to pick an element!!");
+    }
+    public Order findSelectedOrder(){
+        Order order;
+        if(this.orders.contains(this.toDoList.getSelectionModel().getSelectedItem()))
+            order = this.toDoList.getSelectionModel().getSelectedItem();
+        else if(this.orders.contains(this.inProgressList.getSelectionModel().getSelectedItem()))
+            order = this.inProgressList.getSelectionModel().getSelectedItem();
+        else if(this.orders.contains(this.doneList.getSelectionModel().getSelectedItem()))
+            order = this.doneList.getSelectionModel().getSelectedItem();
+        else order = null;
+        return order;
     }
     public void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
         newWindow.showWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
         scene4Controller.transferMessage(message, null);
-    }
-    public void resetWindow(){
-        Window newWindow = new Window("Kanban", "/Views/MainWindow.fxml", "/styles/style.css", 1036, 552);
-        newWindow.showWindow();
-    }
-    public void closeWindow(){
-        Stage stage = (Stage) this.toDoList.getScene().getWindow();
-        stage.close();
     }
 }
