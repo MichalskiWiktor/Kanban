@@ -1,11 +1,11 @@
 package Models;
 
-public class Order {
+public class Task {
 
     private final int id, priority, status;
     private final String title, description, date;
 
-    public Order(int id, int priority, int status, String description, String title, String date) {
+    public Task(int id, int priority, int status, String description, String title, String date) {
         this.id = id;
         this.priority = priority;
         this.status = status;
@@ -34,7 +34,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + this.id + " , title=" + this.title + ", date=" + this.date + '}';
+        return "Task{" + "id=" + this.id + " , title=" + this.title + ", date=" + this.date + '}';
     }
 
 }

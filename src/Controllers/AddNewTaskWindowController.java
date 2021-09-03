@@ -23,15 +23,19 @@ public class AddNewTaskWindowController extends MainWindowController{
         this.setDefaultDeadline();
         this.priorityChoiceBox.setValue("Low");
     }
+    /*Sets possible choices*/
     private void loadItemsToChoiceBox(){
         this.priorityChoiceBox.getItems().add("Low");
         this.priorityChoiceBox.getItems().add("Medium");
         this.priorityChoiceBox.getItems().add("High");
     }
+    /*Sets today's date as a deadline*/
     private void setDefaultDeadline(){
         LocalDate myObj = LocalDate.now();
         this.newDeadline.setValue(myObj);
     }
+    /*Checks if inserted title and description are not too long
+    and sets default tile and description if there is none*/
     private boolean checkIfAllInsertedDataIsCorrectAndFixIt(){
         if(this.newTitle.getText().length()>50){
             this.createPopUpWindow("Title is too big", false);
@@ -45,6 +49,7 @@ public class AddNewTaskWindowController extends MainWindowController{
         if(this.newDescription.getText().length()==0)this.newDescription.setText("There is a lack of description");
         return true;
     }
+    /*Inserts data to the database*/
     public void sendNewTaskToDatabase(){
         if(this.checkIfAllInsertedDataIsCorrectAndFixIt()){
             try{

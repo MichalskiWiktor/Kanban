@@ -7,7 +7,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import Models.Order;
+import Models.Task;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -18,28 +18,31 @@ public class ModifyTaskWindowController extends MainWindowController{
     @FXML private ChoiceBox <String> priorityChoiceBox;
     @FXML private DatePicker modifiedDeadline;
     @FXML private TextArea modifiedDescription;
-    private Order order;
+    private Task task;
     public void transferData(int id, String title, String description, int priority, String date, int status){
-        this.order = new Order(id, priority, status, description, title, date);
+        this.task = new Task(id, priority, status, description, title, date);
         this.loadDataToFields();
     }
-    @FXML
-    private void initialize(){
+    @FXML private void initialize(){
         this.loadItemsToChoiceBox();
     }
+    /*Sets possible choices*/
     private void loadItemsToChoiceBox(){
         this.priorityChoiceBox.getItems().add("Low");
         this.priorityChoiceBox.getItems().add("Medium");
         this.priorityChoiceBox.getItems().add("High");
     }
+    /*Load data to fields*/
     private void loadDataToFields(){
-        this.modifiedTitle.setText(this.order.getTitle());
-        if(this.order.getPriority()==1)this.priorityChoiceBox.setValue("Low");
-        else if(this.order.getPriority()==2)this.priorityChoiceBox.setValue("Medium");
-        else if(this.order.getPriority()==3)this.priorityChoiceBox.setValue("High");
-        this.modifiedDeadline.setValue(LocalDate.parse(this.order.getDate()));
-        this.modifiedDescription.setText(this.order.getDescription());
+        this.modifiedTitle.setText(this.task.getTitle());
+        if(this.task.getPriority()==1)this.priorityChoiceBox.setValue("Low");
+        else if(this.task.getPriority()==2)this.priorityChoiceBox.setValue("Medium");
+        else if(this.task.getPriority()==3)this.priorityChoiceBox.setValue("High");
+        this.modifiedDeadline.setValue(LocalDate.parse(this.task.getDate()));
+        this.modifiedDescription.setText(this.task.getDescription());
     }
+    /*Checks if inserted title and description are not too long
+and sets default tile and description if there is none*/
     private boolean checkIfAllInsertedDataIsCorrectAndFixIt(){
         if(this.modifiedTitle.getText().length()>50){
             this.createPopUpWindow("Title is too big", false);
@@ -53,6 +56,7 @@ public class ModifyTaskWindowController extends MainWindowController{
         if(this.modifiedDescription.getText().length()==0)this.modifiedDescription.setText("There is a lack of description");
         return true;
     }
+    /*Inserts data to the database*/
     public void sendModifiedTaskToDatabase(){
         if(this.checkIfAllInsertedDataIsCorrectAndFixIt()){
             try{
@@ -64,7 +68,7 @@ public class ModifyTaskWindowController extends MainWindowController{
                     case "High" -> 3;
                     default -> 0;
                 };
-                myStat.execute("UPDATE orders SET title = '"+this.modifiedTitle.getText()+"', description = '"+this.modifiedDescription.getText()+"', priority = "+priorityNumber+", date = '"+this.modifiedDeadline.getValue()+"' WHERE id="+this.order.getId()+";");
+                myStat.execute("UPDATE orders SET title = '"+this.modifiedTitle.getText()+"', description = '"+this.modifiedDescription.getText()+"', priority = "+priorityNumber+", date = '"+this.modifiedDeadline.getValue()+"' WHERE id="+this.task.getId()+";");
                 this.createPopUpWindow("Order has been modified", true);
             }
             catch(Exception exc){

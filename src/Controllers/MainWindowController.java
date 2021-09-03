@@ -12,21 +12,22 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import Models.Order;
+import Models.Task;
 import javafx.stage.Stage;
 
 public class MainWindowController{
-    @FXML private ListView <Order> toDoList;
-    @FXML private ListView <Order> inProgressList;
-    @FXML private ListView <Order> doneList;
+    @FXML private ListView <Task> toDoList;
+    @FXML private ListView <Task> inProgressList;
+    @FXML private ListView <Task> doneList;
     @FXML private Button refreshBtn;
-    private final ArrayList <Order> orders = new ArrayList<>();
+    private final ArrayList <Task> tasks = new ArrayList<>();
 
     @FXML private void initialize(){
         this.getDataFromDatabase();
         this.loadDataToLists();
         this.initPhotos();
     }
+    /*Sets default photos*/
     private void initPhotos(){
         ImageView imageView = new ImageView(getClass().getResource("/data/photos/refresh.png").toExternalForm());
         imageView.setFitHeight(50);
@@ -34,6 +35,7 @@ public class MainWindowController{
         imageView.setY(10);
         this.refreshBtn.setGraphic(imageView);
     }
+    /*Makes connection to database*/
     private ResultSet connectToDatabase(String query){
         try{
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kanban", "root", "");
@@ -49,11 +51,12 @@ public class MainWindowController{
     public void databaseConnectionError(){
         this.createPopUpWindow("Database error!!!");
     }
+    /*Gets data from database and inserts it into order list*/
     private void getDataFromDatabase(){
         try{
             ResultSet myRes = this.connectToDatabase("SELECT * FROM orders");
             while(myRes.next())
-                this.orders.add(new Order(myRes.getInt("id"), myRes.getInt("priority"), myRes.getInt("status"), myRes.getString("description"), myRes.getString("title"), myRes.getString("date")));
+                this.tasks.add(new Task(myRes.getInt("id"), myRes.getInt("priority"), myRes.getInt("status"), myRes.getString("description"), myRes.getString("title"), myRes.getString("date")));
         }
         catch(Exception exc){
             this.databaseConnectionError();
@@ -62,26 +65,28 @@ public class MainWindowController{
             exc.printStackTrace();
         }
     }
+    /*Inserts data from order list into listviews*/
     private void loadDataToLists(){
-        this.toDoList.setCellFactory((lv) -> OrderListCell.newInstance());
-        this.inProgressList.setCellFactory((lv) -> OrderListCell.newInstance());
-        this.doneList.setCellFactory((lv) -> OrderListCell.newInstance());
-        ObservableList<Order> ordersToDo = FXCollections.observableArrayList();
-        ObservableList<Order> ordersInProgress = FXCollections.observableArrayList();
-        ObservableList<Order> ordersDone = FXCollections.observableArrayList();
-        for(Order order : this.orders) {
-            if (order.getStatus() == 1) {
-                ordersToDo.add(order);
-                this.toDoList.setItems(ordersToDo);
-            } else if (order.getStatus() == 2) {
-                ordersInProgress.add(order);
-                this.inProgressList.setItems(ordersInProgress);
-            } else if (order.getStatus() == 3) {
-                ordersDone.add(order);
-                this.doneList.setItems(ordersDone);
+        this.toDoList.setCellFactory((lv) -> TaskListCell.newInstance());
+        this.inProgressList.setCellFactory((lv) -> TaskListCell.newInstance());
+        this.doneList.setCellFactory((lv) -> TaskListCell.newInstance());
+        ObservableList<Task> tasksToDo = FXCollections.observableArrayList();
+        ObservableList<Task> tasksInProgresses = FXCollections.observableArrayList();
+        ObservableList<Task> tasksDone = FXCollections.observableArrayList();
+        for(Task task : this.tasks) {
+            if (task.getStatus() == 1) {
+                tasksToDo.add(task);
+                this.toDoList.setItems(tasksToDo);
+            } else if (task.getStatus() == 2) {
+                tasksInProgresses.add(task);
+                this.inProgressList.setItems(tasksInProgresses);
+            } else if (task.getStatus() == 3) {
+                tasksDone.add(task);
+                this.doneList.setItems(tasksDone);
             }
         }
     }
+    /*Makes sure only one item is selected*/
     @FXML public void handleMouseClickToDoList() {
         this.inProgressList.getSelectionModel().clearSelection();
         this.doneList.getSelectionModel().clearSelection();
@@ -96,7 +101,7 @@ public class MainWindowController{
     }
     public void refreshLists(){
         this.clearAllListviews();
-        this.orders.clear();
+        this.tasks.clear();
         this.getDataFromDatabase();
         this.loadDataToLists();
     }
@@ -105,35 +110,39 @@ public class MainWindowController{
         this.inProgressList.getItems().clear();
         this.doneList.getItems().clear();
     }
+    /*After button is clicked it creates new window where we can add new task*/
     public void addNewTask(){
         Window newWindow = new Window("Add New Task", "/Views/AddNewTaskWindow.fxml", "/styles/style2.css", 342, 353);
         newWindow.showWindow();
     }
+    /*After button is clicked it creates new window where it shows details about selected task*/
     public void showDetailsWindow(){
-        Order order = this.findSelectedOrder();
-        if(order!=null){
+        Task task = this.findSelectedTask();
+        if(task !=null){
             Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/style.css", 358, 255);
             newWindow.showWindow();
             ShowDetailsWindowController scene4Controller = newWindow.getLoader().getController();
-            scene4Controller.transferData(order.getId(), order.getTitle(), order.getDescription(), order.getPriority(), order.getDate(), order.getStatus());
+            scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
         }
         else this.createPopUpWindow("You have to pick an element!!");
     }
+    /*After button is clicked it creates new window where we can modify selected item*/
     public void modifyTask(){
-        Order order = this.findSelectedOrder();
-        if(order!=null){
+        Task task = this.findSelectedTask();
+        if(task !=null){
             Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/style2.css", 342, 353);
             newWindow.showWindow();
             ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
-            scene4Controller.transferData(order.getId(), order.getTitle(), order.getDescription(), order.getPriority(), order.getDate(), order.getStatus());
+            scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
         }
         else this.createPopUpWindow("You have to pick an element!!");
     }
+    /*After button is clicked selected item is deleted*/
     public void deleteTask(){
-        Order order = this.findSelectedOrder();
-        if(order!=null){
+        Task task = this.findSelectedTask();
+        if(task !=null){
             try{
-                this.connectToDatabase(("DELETE FROM orders WHERE id=" + order.getId()));
+                this.connectToDatabase(("DELETE FROM tasks WHERE id=" + task.getId()));
                 this.refreshLists();
             }catch(Exception exc){
                 exc.printStackTrace();
@@ -141,11 +150,12 @@ public class MainWindowController{
         }
         else this.createPopUpWindow("You have to pick an element!!");
     }
+    /*After button is clicked selected item is moved to the next listview and if it is in "done list" it will do nothing*/
     public void moveTask(){
-        Order order = this.findSelectedOrder();
-       if(order!=null){
+        Task task = this.findSelectedTask();
+       if(task !=null){
            try{
-               this.connectToDatabase(("UPDATE orders SET status = " + (order.getStatus() + 1) + " WHERE id=" + order.getId() + " AND status<>3"));
+               this.connectToDatabase(("UPDATE tasks SET status = " + (task.getStatus() + 1) + " WHERE id=" + task.getId() + " AND status<>3"));
                this.refreshLists();
            }catch(Exception exc){
                exc.printStackTrace();
@@ -153,16 +163,17 @@ public class MainWindowController{
        }
        else this.createPopUpWindow("You have to pick an element!!");
     }
-    private Order findSelectedOrder(){
-        Order order;
-        if(this.orders.contains(this.toDoList.getSelectionModel().getSelectedItem()))
-            order = this.toDoList.getSelectionModel().getSelectedItem();
-        else if(this.orders.contains(this.inProgressList.getSelectionModel().getSelectedItem()))
-            order = this.inProgressList.getSelectionModel().getSelectedItem();
-        else if(this.orders.contains(this.doneList.getSelectionModel().getSelectedItem()))
-            order = this.doneList.getSelectionModel().getSelectedItem();
-        else order = null;
-        return order;
+    /*Returns selected item*/
+    private Task findSelectedTask(){
+        Task task;
+        if(this.tasks.contains(this.toDoList.getSelectionModel().getSelectedItem()))
+            task = this.toDoList.getSelectionModel().getSelectedItem();
+        else if(this.tasks.contains(this.inProgressList.getSelectionModel().getSelectedItem()))
+            task = this.inProgressList.getSelectionModel().getSelectedItem();
+        else if(this.tasks.contains(this.doneList.getSelectionModel().getSelectedItem()))
+            task = this.doneList.getSelectionModel().getSelectedItem();
+        else task = null;
+        return task;
     }
     private void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
