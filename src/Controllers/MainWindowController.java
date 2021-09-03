@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Models.Order;
+import javafx.stage.Stage;
+
 public class MainWindowController{
     @FXML private ListView <Order> toDoList;
     @FXML private ListView <Order> inProgressList;
@@ -20,19 +22,19 @@ public class MainWindowController{
     @FXML private Button refreshBtn;
     private final ArrayList <Order> orders = new ArrayList<>();
 
-    @FXML public void initialize(){
+    @FXML private void initialize(){
         this.getDataFromDatabase();
         this.loadDataToLists();
         this.initPhotos();
     }
-    public void initPhotos(){
+    private void initPhotos(){
         ImageView imageView = new ImageView(getClass().getResource("/data/photos/refresh.png").toExternalForm());
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         imageView.setY(10);
         this.refreshBtn.setGraphic(imageView);
     }
-    public ResultSet connectToDatabase(String query){
+    private ResultSet connectToDatabase(String query){
         try{
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kanban", "root", "");
             Statement myStat = myConn.createStatement();
@@ -47,7 +49,7 @@ public class MainWindowController{
     public void databaseConnectionError(){
         this.createPopUpWindow("Database error!!!");
     }
-    public void getDataFromDatabase(){
+    private void getDataFromDatabase(){
         try{
             ResultSet myRes = this.connectToDatabase("SELECT * FROM orders");
             while(myRes.next())
@@ -55,10 +57,12 @@ public class MainWindowController{
         }
         catch(Exception exc){
             this.databaseConnectionError();
+            Stage stage = (Stage) this.toDoList.getScene().getWindow();
+            stage.close();
             exc.printStackTrace();
         }
     }
-    public void loadDataToLists(){
+    private void loadDataToLists(){
         this.toDoList.setCellFactory((lv) -> OrderListCell.newInstance());
         this.inProgressList.setCellFactory((lv) -> OrderListCell.newInstance());
         this.doneList.setCellFactory((lv) -> OrderListCell.newInstance());
@@ -96,7 +100,7 @@ public class MainWindowController{
         this.getDataFromDatabase();
         this.loadDataToLists();
     }
-    public void clearAllListviews(){
+    private void clearAllListviews(){
         this.toDoList.getItems().clear();
         this.inProgressList.getItems().clear();
         this.doneList.getItems().clear();
@@ -149,7 +153,7 @@ public class MainWindowController{
        }
        else this.createPopUpWindow("You have to pick an element!!");
     }
-    public Order findSelectedOrder(){
+    private Order findSelectedOrder(){
         Order order;
         if(this.orders.contains(this.toDoList.getSelectionModel().getSelectedItem()))
             order = this.toDoList.getSelectionModel().getSelectedItem();
@@ -160,7 +164,7 @@ public class MainWindowController{
         else order = null;
         return order;
     }
-    public void createPopUpWindow(String message){
+    private void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
         newWindow.showWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();

@@ -17,7 +17,7 @@
   </rowConstraints>
       <Label styleClass="listCell" text="ID:" />
       <Label styleClass="listCell" text="Tytuł:" GridPane.rowIndex="1" />
-      <Label styleClass="listCell" text="Data:" GridPane.rowIndex="2" />
+      <Label styleClass="listCell" text="Deadline:" GridPane.rowIndex="2" />
       <Label fx:id="id" styleClass="listCell" text="ID:" GridPane.columnIndex="1" />
       <Label fx:id="title" styleClass="listCell" text="Tytuł" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
       <Label fx:id="date" styleClass="listCell" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />

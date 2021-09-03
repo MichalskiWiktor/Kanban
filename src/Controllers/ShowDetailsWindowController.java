@@ -16,7 +16,7 @@ public class ShowDetailsWindowController {
         this.order = new Order(id, priority, status, description, title, date);
         this.loadDataToLabels();
     }
-    public void loadDataToLabels(){
+    private void loadDataToLabels(){
         this.idLabel.setText(this.idLabel.getText() + " " + this.order.getId());
 
         if(this.order.getPriority()==1)this.priorityLabel.setText(this.priorityLabel.getText() + " Low");

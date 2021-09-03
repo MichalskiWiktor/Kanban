@@ -24,15 +24,15 @@ public class ModifyTaskWindowController extends MainWindowController{
         this.loadDataToFields();
     }
     @FXML
-    public void initialize(){
+    private void initialize(){
         this.loadItemsToChoiceBox();
     }
-    public void loadItemsToChoiceBox(){
+    private void loadItemsToChoiceBox(){
         this.priorityChoiceBox.getItems().add("Low");
         this.priorityChoiceBox.getItems().add("Medium");
         this.priorityChoiceBox.getItems().add("High");
     }
-    public void loadDataToFields(){
+    private void loadDataToFields(){
         this.modifiedTitle.setText(this.order.getTitle());
         if(this.order.getPriority()==1)this.priorityChoiceBox.setValue("Low");
         else if(this.order.getPriority()==2)this.priorityChoiceBox.setValue("Medium");
@@ -40,29 +40,43 @@ public class ModifyTaskWindowController extends MainWindowController{
         this.modifiedDeadline.setValue(LocalDate.parse(this.order.getDate()));
         this.modifiedDescription.setText(this.order.getDescription());
     }
-    public void sendModifiedTaskToDatabase(){
-        try{
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kanban", "root", "");
-            Statement myStat = myConn.createStatement();
-            int priorityNumber = switch (this.priorityChoiceBox.getValue()) {
-                case "Low" -> 1;
-                case "Medium" -> 2;
-                case "High" -> 3;
-                default -> 0;
-            };
-            if(this.modifiedTitle.getText().length()==0)this.modifiedTitle.setText("There is a lack of title");
-            if(this.modifiedDescription.getText().length()==0)this.modifiedDescription.setText("There is a lack of description");
-            myStat.execute("UPDATE orders SET title = '"+this.modifiedTitle.getText()+"', description = '"+this.modifiedDescription.getText()+"', priority = "+priorityNumber+", date = '"+this.modifiedDeadline.getValue()+"' WHERE id="+this.order.getId()+";");
-            this.createPopUpWindow("Order has been modified");
+    private boolean checkIfAllInsertedDataIsCorrectAndFixIt(){
+        if(this.modifiedTitle.getText().length()>50){
+            this.createPopUpWindow("Title is too big", false);
+            return false;
         }
-        catch(Exception exc){
-            exc.printStackTrace();
+        else if(this.modifiedDescription.getText().length()>255){
+            this.createPopUpWindow("Description is too big", false);
+            return false;
+        }
+        if(this.modifiedTitle.getText().length()==0)this.modifiedTitle.setText("There is a lack of title");
+        if(this.modifiedDescription.getText().length()==0)this.modifiedDescription.setText("There is a lack of description");
+        return true;
+    }
+    public void sendModifiedTaskToDatabase(){
+        if(this.checkIfAllInsertedDataIsCorrectAndFixIt()){
+            try{
+                Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kanban", "root", "");
+                Statement myStat = myConn.createStatement();
+                int priorityNumber = switch (this.priorityChoiceBox.getValue()) {
+                    case "Low" -> 1;
+                    case "Medium" -> 2;
+                    case "High" -> 3;
+                    default -> 0;
+                };
+                myStat.execute("UPDATE orders SET title = '"+this.modifiedTitle.getText()+"', description = '"+this.modifiedDescription.getText()+"', priority = "+priorityNumber+", date = '"+this.modifiedDeadline.getValue()+"' WHERE id="+this.order.getId()+";");
+                this.createPopUpWindow("Order has been modified", true);
+            }
+            catch(Exception exc){
+                exc.printStackTrace();
+            }
         }
     }
-    public void createPopUpWindow(String message){
+    private void createPopUpWindow(String message, boolean closeWindow){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
         newWindow.showWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        scene4Controller.transferMessage(message, (Stage) this.modifiedTitle.getScene().getWindow());
+        if(closeWindow)scene4Controller.transferMessage(message, (Stage) this.modifiedDescription.getScene().getWindow());
+        else scene4Controller.transferMessage(message, null);
     }
 }
