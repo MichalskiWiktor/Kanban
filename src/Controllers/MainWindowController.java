@@ -54,7 +54,7 @@ public class MainWindowController{
     /*Gets data from database and inserts it into order list*/
     private void getDataFromDatabase(){
         try{
-            ResultSet myRes = this.connectToDatabase("SELECT * FROM orders");
+            ResultSet myRes = this.connectToDatabase("SELECT * FROM tasks");
             while(myRes.next())
                 this.tasks.add(new Task(myRes.getInt("id"), myRes.getInt("priority"), myRes.getInt("status"), myRes.getString("description"), myRes.getString("title"), myRes.getString("date")));
         }

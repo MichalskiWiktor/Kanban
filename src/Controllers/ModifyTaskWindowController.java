@@ -68,8 +68,8 @@ and sets default tile and description if there is none*/
                     case "High" -> 3;
                     default -> 0;
                 };
-                myStat.execute("UPDATE orders SET title = '"+this.modifiedTitle.getText()+"', description = '"+this.modifiedDescription.getText()+"', priority = "+priorityNumber+", date = '"+this.modifiedDeadline.getValue()+"' WHERE id="+this.task.getId()+";");
-                this.createPopUpWindow("Order has been modified", true);
+                myStat.execute("UPDATE tasks SET title = '"+this.modifiedTitle.getText()+"', description = '"+this.modifiedDescription.getText()+"', priority = "+priorityNumber+", date = '"+this.modifiedDeadline.getValue()+"' WHERE id="+this.task.getId()+";");
+                this.createPopUpWindow("Task has been modified", true);
             }
             catch(Exception exc){
                 exc.printStackTrace();

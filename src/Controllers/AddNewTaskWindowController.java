@@ -61,8 +61,8 @@ public class AddNewTaskWindowController extends MainWindowController{
                     case "High" -> 3;
                     default -> 0;
                 };
-                myStat.execute("INSERT INTO orders(title, description, priority, date, status) VALUES('" + this.newTitle.getText() + "', '" + this.newDescription.getText() + "', " +priorityNumber + ", '"+this.newDeadline.getValue()+"', "+ 1 +");");
-                this.createPopUpWindow("Order has been added" , true);
+                myStat.execute("INSERT INTO tasks(title, description, priority, date, status) VALUES('" + this.newTitle.getText() + "', '" + this.newDescription.getText() + "', " +priorityNumber + ", '"+this.newDeadline.getValue()+"', "+ 1 +");");
+                this.createPopUpWindow("Task has been added" , true);
             }
             catch(Exception exc){
                 exc.printStackTrace();
