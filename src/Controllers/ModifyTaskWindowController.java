@@ -78,9 +78,10 @@ and sets default tile and description if there is none*/
     }
     private void createPopUpWindow(String message, boolean closeWindow){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
-        newWindow.showWindow();
+        newWindow.initWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
         if(closeWindow)scene4Controller.transferMessage(message, (Stage) this.modifiedDescription.getScene().getWindow());
         else scene4Controller.transferMessage(message, null);
+        newWindow.showWindow();
     }
 }

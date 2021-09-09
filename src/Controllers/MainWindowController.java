@@ -113,16 +113,19 @@ public class MainWindowController{
     /*After button is clicked it creates new window where we can add new task*/
     public void addNewTask(){
         Window newWindow = new Window("Add New Task", "/Views/AddNewTaskWindow.fxml", "/styles/style2.css", 342, 353);
+        newWindow.initWindow();
         newWindow.showWindow();
+        this.refreshLists();
     }
     /*After button is clicked it creates new window where it shows details about selected task*/
     public void showDetailsWindow(){
         Task task = this.findSelectedTask();
         if(task !=null){
             Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/style.css", 358, 255);
-            newWindow.showWindow();
+            newWindow.initWindow();
             ShowDetailsWindowController scene4Controller = newWindow.getLoader().getController();
             scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
+            newWindow.showWindow();
         }
         else this.createPopUpWindow("You have to pick an element!!");
     }
@@ -131,9 +134,11 @@ public class MainWindowController{
         Task task = this.findSelectedTask();
         if(task !=null){
             Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/style2.css", 342, 353);
-            newWindow.showWindow();
+            newWindow.initWindow();
             ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
             scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
+            newWindow.showWindow();
+            this.refreshLists();
         }
         else this.createPopUpWindow("You have to pick an element!!");
     }

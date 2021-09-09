@@ -71,9 +71,10 @@ public class AddNewTaskWindowController extends MainWindowController{
     }
     private void createPopUpWindow(String message, boolean closeWindow){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", 235, 92);
-        newWindow.showWindow();
+        newWindow.initWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
         if(closeWindow)scene4Controller.transferMessage(message, (Stage) this.newTitle.getScene().getWindow());
         else scene4Controller.transferMessage(message, null);
+        newWindow.showWindow();
     }
 }

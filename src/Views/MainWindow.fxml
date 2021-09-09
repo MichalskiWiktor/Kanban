@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="1036.0" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainWindowController">
-   <Label layoutX="506.0" layoutY="14.0" text="Orders">
+   <Label layoutX="518.0" layoutY="14.0" text="Tasks">
       <font>
          <Font size="34.0" />
       </font></Label>

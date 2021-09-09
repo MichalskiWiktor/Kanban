@@ -30,7 +30,7 @@
          <Font size="16.0" />
       </font>
    </Label>
-   <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="25.0" layoutY="160.0" prefHeight="100.0" prefWidth="324.0" text="Description:">
+   <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutX="25.0" layoutY="160.0" prefHeight="100.0" prefWidth="324.0" text="Description:" wrapText="true">
       <font>
          <Font size="16.0" />
       </font>
