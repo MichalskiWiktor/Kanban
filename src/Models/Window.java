@@ -3,6 +3,7 @@ package Models;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.util.Objects;
 
@@ -10,14 +11,16 @@ public class Window {
     private final String title;
     private final String cssFile;
     private final String fxmlFile;
+    private final String iconFile;
     private final int width;
     private final int height;
     private FXMLLoader loader;
     private Stage stage;
-    public Window(String title, String fxmlFile, String cssFile, int width, int height){
+    public Window(String title, String fxmlFile, String cssFile, String iconFile, int width, int height){
         this.title = title;
         this.cssFile = cssFile;
         this.fxmlFile = fxmlFile;
+        this.iconFile = iconFile;
         this.width = width;
         this.height = height;
     }
@@ -29,6 +32,7 @@ public class Window {
             this.loader = fxmlLoader;
             stage.setTitle(this.title);
             stage.setResizable(false);
+            if(this.iconFile!=null)stage.getIcons().add(new Image(this.iconFile));
             stage.setScene(new Scene(root, this.width, this.height));
             stage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource(this.cssFile)).toExternalForm());
             this.stage = stage;

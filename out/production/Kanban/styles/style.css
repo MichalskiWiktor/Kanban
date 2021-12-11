@@ -1,40 +1,83 @@
+#rootnode {
+-fx-background-radius: 30 30 30 30;
+}
 .pane{
-    -fx-background-color:#4a4a4a;
+-fx-background-radius: 30 30 30 30;
 }
-.button{
-    -fx-text-fill:#F0FFFF;
-    -fx-background-color:#044752;
+/*Top section*/
+#topPane{
+-fx-background-radius: 20 20 0 0;
 }
-.button:hover{
-    -fx-cursor:hand;
+#closeImg:hover{
+-fx-cursor:hand;
 }
-.label{
-    -fx-text-fill:#F0FFFF;
-    -fx-font-weight:bold;
+/*Left section*/
+#leftSection{
+-fx-background-radius: 0 0 0 20;
 }
-.list-view{
-    -fx-background-radius: 20px;
+.leftSectionBtn{
+-fx-font-weight:600;
+-fx-font-size:18px;
+-fx-border-width:0 0 0 2;
+-fx-border-color:#1d2124;
 }
-.listCell{
-    -fx-text-fill:#403f3f;
-}
-.list-cell{
-    -fx-background-radius: 20px;
-    -fx-text-fill:#262626;
-}
-.list-cell:selected{
-    -fx-background-color:#044752;
-    -fx-text-fill:white;
-}
-.list-cell:selected .listCell{
-   -fx-text-fill:white;
-}
-.list-cell:hover{
-    -fx-cursor:hand;
-    -fx-text-fill:white;
-    -fx-background-color:#055b69;
-}
-.list-cell:hover .listCell{
-   -fx-text-fill:white;
+.leftSectionBtn:hover{
+-fx-alignment:center;
+-fx-cursor:hand;
+-fx-border-color:#db521b;
 }
 
+/*Center section*/
+#middleSection{
+-fx-background-radius: 0 0 20 0;
+}
+.list-view .scroll-bar:vertical {
+-fx-scale-x: 0;
+}
+.list-view .scroll-bar:horizontal {
+-fx-scale-x: 0;
+}
+.list-cell{
+-fx-background-color:#202326;
+-fx-padding: 10px;
+-fx-border-insets: 10px;
+-fx-background-insets: 10px;
+-fx-background-radius: 25;
+}
+.list-cell:selected .listCell{
+-fx-text-fill:white;
+}
+.list-cell:hover{
+-fx-cursor:hand;
+-fx-text-fill:white;
+-fx-background-color:#bbc4d0;
+-fx-background-radius: 25;
+}
+.list-cell:hover .listCell{
+-fx-text-fill:white;
+}
+
+/*List-Cell Window*/
+#dateBox{
+-fx-padding:10px;
+-fx-background-radius: 10;
+}
+.priorityLbl{
+-fx-padding:5px;
+-fx-border-color:#155b51;
+-fx-border-radius: 10;
+}
+.categoriesLbl{
+-fx-padding:5px;
+-fx-border-color:#83868a;
+-fx-border-radius: 10;
+}
+#root{
+-fx-background-radius: 20 ;
+-fx-border-width:1px;
+}
+#root:hover{
+-fx-background-radius: 20 ;
+-fx-border-radius: 20 ;
+-fx-border-color:#db521b;
+}
