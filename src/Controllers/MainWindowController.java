@@ -6,10 +6,19 @@ import Models.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.util.Objects;
+
 ////W projects lista projektow i tylul opis zdje technlogi itd
 public class MainWindowController{
     @FXML private ListView <Task> toDoList;
@@ -28,10 +37,10 @@ public class MainWindowController{
             Stage stage = (Stage) this.toDoList.getScene().getWindow();
             stage.close();
         });
-        /*minimizeImg.setOnMousePressed (event ->{
+        minimizeImg.setOnMousePressed (event ->{
             Stage stage = (Stage) this.toDoList.getScene().getWindow();
             stage.setIconified(true);
-        });*/
+        });
 
         topPane.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
@@ -86,11 +95,16 @@ public class MainWindowController{
         this.inProgressList.getItems().clear();
         this.doneList.getItems().clear();
     }
+    public void openSettings(){
+        Window newWindow = new Window("Settings", "/Views/settingsWindow.fxml", "/styles/style.css", null,  370, 350);
+        newWindow.initWindow();
+        newWindow.showWindow();
+    }
     /*After button is clicked it creates new window where we can add new task*/
     public void addNewTask(){
         Window newWindow = new Window("Add New Task", "/Views/AddTaskWindow.fxml", "/styles/mainStyle.css", null,  342, 353);
         newWindow.initWindow();
-        newWindow.showWindow();
+        newWindow.showAndWaitWindow();
         this.refreshLists();
     }
     /*After button is clicked it creates new window where it shows details about selected task*/
@@ -101,7 +115,7 @@ public class MainWindowController{
             newWindow.initWindow();
             ShowDetailsWindowController scene4Controller = newWindow.getLoader().getController();
             scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
-            newWindow.showWindow();
+            newWindow.showAndWaitWindow();
         }
         else this.createPopUpWindow("You have to pick an element!!");
     }
@@ -113,7 +127,7 @@ public class MainWindowController{
             newWindow.initWindow();
             ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
             scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
-            newWindow.showWindow();
+            newWindow.showAndWaitWindow();
             this.refreshLists();
         }
         else this.createPopUpWindow("You have to pick an element!!");
@@ -158,7 +172,7 @@ public class MainWindowController{
     }
     private void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/mainStyle.css", "/data/photos/popUpIcon.png", 235, 92);
-        newWindow.showWindow();
+        newWindow.showAndWaitWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
         scene4Controller.transferMessage(message, null);
     }

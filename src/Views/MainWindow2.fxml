@@ -10,11 +10,16 @@
         <top>
             <Pane fx:id="topPane" prefHeight="31.0" prefWidth="1232.0" style="-fx-background-color: #171a1c;" BorderPane.alignment="CENTER">
                 <children>
-                    <ImageView fx:id="closeImg" fitHeight="26.0" fitWidth="25.0" layoutX="1190.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="closeImg" fitHeight="25.0" fitWidth="25.0" layoutX="1190.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../data/photos/closeIcon.png" />
                         </image>
                     </ImageView>
+               <ImageView fx:id="minimizeImg" fitHeight="24.0" fitWidth="24.0" layoutX="1154.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../data/photos/minimizeIcon.png" />
+                  </image>
+               </ImageView>
                 </children>
             </Pane>
         </top>
@@ -25,7 +30,7 @@
                         <Font name="Arial Bold" size="32.0" />
                     </font>
                 </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="175.0" text="2:17 PM" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="48.0" prefWidth="175.0" text="2:17 PM" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="26.0" />
                </font>
@@ -42,7 +47,7 @@
                   </ImageView>
                </graphic>
                 </Button>
-                <Button graphicTextGap="15.0" layoutY="10.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: #1d2124;" styleClass="leftSectionBtn" text="Tasks" textFill="WHITE">
+                <Button graphicTextGap="15.0" layoutY="10.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: #1d2124;" styleClass="leftSectionBtn" text="Board" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -54,7 +59,19 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button graphicTextGap="15.0" layoutY="10.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: #1d2124;" styleClass="leftSectionBtn" text="Settings" textFill="WHITE">
+            <Button graphicTextGap="15.0" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: #1d2124;" styleClass="leftSectionBtn" text="Charts" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/photos/chartIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+                <Button graphicTextGap="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#openSettings" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: #1d2124;" styleClass="leftSectionBtn" text="Settings" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -121,12 +138,24 @@
                     </Pane>
                     <ListView fx:id="doneList" onMouseClicked="#handleMouseClickDoneList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" />
                 </VBox>
-            <Label layoutX="42.0" layoutY="30.0" text="Tasks" textFill="WHITE">
+            <Label layoutX="31.0" layoutY="52.0" text="Tasks" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <TextField layoutX="31.0" layoutY="120.0" />
+            <TextField fx:id="searchTextField" layoutX="31.0" layoutY="120.0" promptText="Search task..." />
+            <TextField fx:id="filterTextField" layoutX="196.0" layoutY="120.0" prefHeight="25.0" prefWidth="82.0" promptText="Filter..." />
+            <ImageView fitHeight="14.0" fitWidth="15.0" layoutX="292.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/photos/miniSettings.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="823.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/photos/bellIcon.png" />
+               </image>
+            </ImageView>
+            <ComboBox layoutX="871.0" layoutY="18.0" prefWidth="150.0" />
             </AnchorPane>
         </center>
     </BorderPane>

@@ -28,6 +28,18 @@
 }
 
 /*Center section*/
+#searchTextField{
+-fx-background-color:#1d2124;
+-fx-padding: 10px;
+-fx-background-radius: 10;
+-fx-text-fill:white;
+}
+#filterTextField{
+-fx-background-color:#212529;
+-fx-padding: 10px;
+-fx-background-radius: 10;
+-fx-text-fill:white;
+}
 #middleSection{
 -fx-background-radius: 0 0 20 0;
 }
@@ -43,9 +55,6 @@
 -fx-border-insets: 10px;
 -fx-background-insets: 10px;
 -fx-background-radius: 25;
-}
-.list-cell:selected .listCell{
--fx-text-fill:white;
 }
 .list-cell:hover{
 -fx-cursor:hand;
@@ -80,4 +89,8 @@
 -fx-background-radius: 20 ;
 -fx-border-radius: 20 ;
 -fx-border-color:#db521b;
+}
+/*Settings*/
+.settingsTextField{
+-fx-text-fill: #fff;
 }

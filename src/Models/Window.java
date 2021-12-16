@@ -43,7 +43,10 @@ public class Window {
     public FXMLLoader getLoader(){
         return this.loader;
     }
-    public void showWindow(){
+    public void showAndWaitWindow(){
         this.stage.showAndWait();
+    }
+    public void showWindow(){
+        this.stage.show();
     }
 }

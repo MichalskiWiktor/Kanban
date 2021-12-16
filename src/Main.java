@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try{
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/MainWindow2.fxml")));
-            root.setId ("rootnode");
+            root.setId("rootnode");
             primaryStage.initStyle (StageStyle.TRANSPARENT);
 
             Scene scene = new Scene (root, 1232, 740);
