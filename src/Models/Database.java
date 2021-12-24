@@ -8,17 +8,51 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Database {
+    /*database static */
+    private static String name = "kanban", port = "3306", user = "root", password = "", status;
+
+    public static String getName(){
+        return name;
+    }
+    public static String getPassword(){
+        return password;
+    }
+    public static String getPort(){
+        return port;
+    }
+    public static String getStatus(){
+        return status;
+    }
+    public static String getUser(){
+        return user;
+    }
+    public static void setName(String newName){
+        name = newName;
+    }
+    public static void setPassword(String newPassword){
+        password = newPassword;
+    }
+    public static void setPort(String newPort){
+        port = newPort;
+    }
+    public static void setStatus(String newStatus){
+        status = newStatus;
+    }
+    public static void setUser(String newUser){
+        user = newUser;
+    }
+
     private final ArrayList<Task> tasks = new ArrayList<>();
     public ArrayList<Task> getTasks(){
         return this.tasks;
     }
-    ///zamiast task beda tworzone tabele 1 ttabela do projektu
+
     public Database(){
         this.downloadListOfTask();
     }
     public ResultSet runQuery(String query){
         try{
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kanban", "root", "");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:"+getPort()+"/"+getName()+"", ""+getUser()+"", ""+getPassword()+"");
             Statement myStat = myConn.createStatement();
             if(query.startsWith("UPDATE") || query.startsWith("DELETE"))myStat.executeUpdate(query);
             else if(query.startsWith("INSERT"))myStat.execute(query);

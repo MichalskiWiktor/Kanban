@@ -65,6 +65,18 @@
 .list-cell:hover .listCell{
 -fx-text-fill:white;
 }
+.menu-button{
+-fx-background-color: #171a1c;
+}
+.menu-button:hover{
+-fx-cursor:hand;
+}
+.menu-button > .arrow-button {
+-fx-padding: 0;
+}
+.menu-button > .arrow-button > .arrow {
+-fx-padding: 0;
+}
 
 /*List-Cell Window*/
 #dateBox{
@@ -94,3 +106,4 @@
 .settingsTextField{
 -fx-text-fill: #fff;
 }
+

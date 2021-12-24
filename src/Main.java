@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/MainWindow2.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/MainWindow.fxml")));
             root.setId("rootnode");
             primaryStage.initStyle (StageStyle.TRANSPARENT);
 

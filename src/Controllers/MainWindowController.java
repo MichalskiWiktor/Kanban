@@ -6,26 +6,23 @@ import Models.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.IOException;
-import java.util.Objects;
-
-////W projects lista projektow i tylul opis zdje technlogi itd
+///// In projects section a list of projects title description img technology etc
 public class MainWindowController{
     @FXML private ListView <Task> toDoList;
     @FXML private ListView <Task> inProgressList;
     @FXML private ListView <Task> doneList;
     @FXML private ImageView closeImg;
     @FXML private ImageView minimizeImg;
+    @FXML private MenuButton upcomingBtn;
+    @FXML private MenuButton inworkBtn;
+    @FXML private MenuButton completeBtn;
     @FXML private Pane topPane;
     private double xOffset = 0;
     private double yOffset = 0;
@@ -33,20 +30,33 @@ public class MainWindowController{
 
     @FXML private void initialize(){
         this.loadDataToLists();
-        closeImg.setOnMousePressed (event ->{
+        this.loadImg();
+        this.waitEvent();
+    }
+    public void loadImg(){
+        Image image = new Image("/data/photos/dotsIcon.png");
+        ImageView imageView = new ImageView(image);
+        ImageView imageView2 = new ImageView(image);
+        ImageView imageView3 = new ImageView(image);
+        upcomingBtn.setGraphic(imageView);
+        inworkBtn.setGraphic(imageView2);
+        completeBtn.setGraphic(imageView3);
+    }
+    public void waitEvent(){
+        this.closeImg.setOnMousePressed (event ->{
             Stage stage = (Stage) this.toDoList.getScene().getWindow();
             stage.close();
         });
-        minimizeImg.setOnMousePressed (event ->{
+        this.minimizeImg.setOnMousePressed (event ->{
             Stage stage = (Stage) this.toDoList.getScene().getWindow();
             stage.setIconified(true);
         });
 
-        topPane.setOnMousePressed(event -> {
+        this.topPane.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
         });
-        topPane.setOnMouseDragged(event -> {
+        this.topPane.setOnMouseDragged(event -> {
             Stage stage = (Stage)topPane.getScene ().getWindow ();
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
@@ -96,7 +106,7 @@ public class MainWindowController{
         this.doneList.getItems().clear();
     }
     public void openSettings(){
-        Window newWindow = new Window("Settings", "/Views/settingsWindow.fxml", "/styles/style.css", null,  370, 350);
+        Window newWindow = new Window("Settings", "/Views/settingsWindow.fxml", "/styles/style.css", "/data/photos/miniSettings.png",  370, 350);
         newWindow.initWindow();
         newWindow.showWindow();
     }
