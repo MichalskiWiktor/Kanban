@@ -15,7 +15,6 @@ public class SettingsWindowController{
     @FXML private RadioButton onBtn;
     @FXML private RadioButton offBtn;
 
-
     public void applyChanges(){
         Database.setName(dbName.getText());
         Database.setPort(dbPort.getText());

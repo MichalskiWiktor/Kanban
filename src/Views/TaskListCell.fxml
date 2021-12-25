@@ -12,11 +12,13 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="252.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../data/photos/threeDotsIcon.png" />
-         </image>
-      </ImageView>
+      <MenuButton fx:id="taskEventBtn" layoutX="252.0" layoutY="11.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="35.0">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#showTask" styleClass="menuItem" text="Show" />
+            <MenuItem mnemonicParsing="false" styleClass="menuItem" text="Edit" />
+            <MenuItem mnemonicParsing="false" styleClass="menuItem" text="Delete" />
+         </items>
+      </MenuButton>
       <HBox fx:id="dateBox" layoutX="171.0" layoutY="60.0" prefHeight="21.0" prefWidth="114.0" spacing="5.0" style="-fx-background-color: #2c2e30;">
          <children>
             <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">

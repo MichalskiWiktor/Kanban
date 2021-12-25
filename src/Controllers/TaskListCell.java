@@ -1,10 +1,14 @@
 package Controllers;
 
+import Models.Window;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import Models.Task;
@@ -21,15 +25,21 @@ public class TaskListCell extends ListCell<Task> implements Initializable {
     @FXML private Label date;
     @FXML private AnchorPane root;
     private Task model;
+    @FXML private MenuButton taskEventBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setGraphic(root);
+        loadImg();
     }
     public AnchorPane getRoot() {
         return root;
     }
-
+    public void loadImg(){
+        Image image = new Image("/data/photos/dotsIcon.png");
+        ImageView imageView = new ImageView(image);
+        taskEventBtn.setGraphic(imageView);
+    }
     public static TaskListCell newInstance() {
         FXMLLoader loader = new FXMLLoader(TaskListCell.class.getResource("/Views/TaskListCell.fxml"));
         try {
@@ -60,5 +70,18 @@ public class TaskListCell extends ListCell<Task> implements Initializable {
             this.date.textProperty().set(String.valueOf(item.getDate()));
         }
         this.model = item;
+    }
+    public void showTask(){
+        Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/style.css", null, 358, 255);
+        newWindow.initWindow();
+        ShowDetailsWindowController scene4Controller = newWindow.getLoader().getController();
+        scene4Controller.transferData(this.model.getId(), this.model.getTitle(), this.model.getDescription(), this.model.getPriority(), this.model.getDate(), this.model.getStatus());
+        newWindow.showWindow();
+    }
+    public void editTask(){
+
+    }
+    public void deleteTask(){
+
     }
 }

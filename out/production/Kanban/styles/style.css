@@ -11,6 +11,9 @@
 #closeImg:hover{
 -fx-cursor:hand;
 }
+#minimizeImg:hover{
+-fx-cursor:hand;
+}
 /*Left section*/
 #leftSection{
 -fx-background-radius: 0 0 0 20;
@@ -65,7 +68,7 @@
 .list-cell:hover .listCell{
 -fx-text-fill:white;
 }
-.menu-button{
+.mainMenuBtn{
 -fx-background-color: #171a1c;
 }
 .menu-button:hover{
@@ -101,6 +104,12 @@
 -fx-background-radius: 20 ;
 -fx-border-radius: 20 ;
 -fx-border-color:#db521b;
+}
+#taskEventBtn{
+-fx-background-color: #202326;
+}
+.menuItem{
+-fx-background-color: #202326;
 }
 /*Settings*/
 .settingsTextField{

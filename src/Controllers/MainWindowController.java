@@ -6,12 +6,20 @@ import Models.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.util.Objects;
 
 ///// In projects section a list of projects title description img technology etc
 public class MainWindowController{
@@ -112,13 +120,13 @@ public class MainWindowController{
     }
     /*After button is clicked it creates new window where we can add new task*/
     public void addNewTask(){
-        Window newWindow = new Window("Add New Task", "/Views/AddTaskWindow.fxml", "/styles/mainStyle.css", null,  342, 353);
+        /*Window newWindow = new Window("Add New Task", "/Views/AddTaskWindow.fxml", "/styles/mainStyle.css", null,  342, 353);
         newWindow.initWindow();
         newWindow.showAndWaitWindow();
-        this.refreshLists();
+        this.refreshLists();*/
     }
     /*After button is clicked it creates new window where it shows details about selected task*/
-    public void showTask(){
+   /* public void showTask(){
         Task task = this.findSelectedTask();
         if(task !=null){
             Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/mainStyle.css", null, 358, 255);
@@ -128,9 +136,9 @@ public class MainWindowController{
             newWindow.showAndWaitWindow();
         }
         else this.createPopUpWindow("You have to pick an element!!");
-    }
+    }*/
     /*After button is clicked it creates new window where we can modify selected item*/
-    public void modifyTask(){
+    /*public void modifyTask(){
         Task task = this.findSelectedTask();
         if(task !=null){
             Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/mainStyle.css", null, 342, 353);
@@ -141,9 +149,9 @@ public class MainWindowController{
             this.refreshLists();
         }
         else this.createPopUpWindow("You have to pick an element!!");
-    }
+    }*/
     /*After button is clicked selected item is deleted*/
-    public void deleteTask(){
+    /*public void deleteTask(){
         Task task = this.findSelectedTask();
         if(task !=null){
             try{
@@ -154,7 +162,7 @@ public class MainWindowController{
             }
         }
         else this.createPopUpWindow("You have to pick an element!!");
-    }
+    }*/
     /*After button is clicked selected item is moved to the next listview and if it is in "done list" it will do nothing*/
     public void moveTask(){
         Task task = this.findSelectedTask();
@@ -166,7 +174,7 @@ public class MainWindowController{
                 exc.printStackTrace();
             }
         }
-        else this.createPopUpWindow("You have to pick an element!!");
+        //else this.createPopUpWindow("You have to pick an element!!");
     }
     /*Returns selected item*/
     private Task findSelectedTask(){
@@ -180,10 +188,10 @@ public class MainWindowController{
         else task = null;
         return task;
     }
-    private void createPopUpWindow(String message){
+    /*private void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/mainStyle.css", "/data/photos/popUpIcon.png", 235, 92);
         newWindow.showAndWaitWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
         scene4Controller.transferMessage(message, null);
-    }
+    }*/
 }
