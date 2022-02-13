@@ -7,7 +7,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import java.time.LocalDate;
 
 public class AddNewTaskWindowController extends MainWindowController{
@@ -37,11 +36,11 @@ public class AddNewTaskWindowController extends MainWindowController{
     and sets default tile and description if there is none*/
     private boolean checkIfAllInsertedDataIsCorrectAndFixIt(){
         if(this.newTitle.getText().length()>50){
-            this.createPopUpWindow("Title is too big", false);
+            this.createPopUpWindow("Title is too big");
             return false;
         }
         else if(this.newDescription.getText().length()>255){
-            this.createPopUpWindow("Description is too big", false);
+            this.createPopUpWindow("Description is too big");
             return false;
         }
         if(this.newTitle.getText().length()==0)this.newTitle.setText("There is a lack of title");
@@ -58,16 +57,15 @@ public class AddNewTaskWindowController extends MainWindowController{
         };
         if(this.checkIfAllInsertedDataIsCorrectAndFixIt ()){
             this.database.runQuery("INSERT INTO tasks(title, description, priority, date, status) VALUES('" + this.newTitle.getText() + "', '" + this.newDescription.getText() + "', " +priorityNumber + ", '"+this.newDeadline.getValue()+"', "+ 1 +");");
-            this.createPopUpWindow("Task has been added" , true);
+            this.createPopUpWindow("Task has been added" );
         }
         else System.out.println ("error");
     }
-    private void createPopUpWindow(String message, boolean closeWindow){
+    private void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp", "/Views/PopUpWindow.fxml", "/styles/mainStyle.css", "/data/photos/popUpIcon.png", 235, 92);
         newWindow.initWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        if(closeWindow)scene4Controller.transferMessage(message, (Stage) this.newTitle.getScene().getWindow());
-        else scene4Controller.transferMessage(message, null);
+        scene4Controller.transferMessage(message);
         newWindow.showWindow();
     }
 }

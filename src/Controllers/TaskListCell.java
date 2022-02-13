@@ -79,9 +79,19 @@ public class TaskListCell extends ListCell<Task> implements Initializable {
         newWindow.showWindow();
     }
     public void editTask(){
-
+        Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/style.css", null, 342, 353);
+        newWindow.initWindow();
+        ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
+        scene4Controller.transferData(this.model.getId(), this.model.getTitle(), this.model.getDescription(), this.model.getPriority(), this.model.getDate(), this.model.getStatus());
+        newWindow.showAndWaitWindow();
+        ////refresh listview somehow
     }
     public void deleteTask(){
-
+        /*try{
+            this.database.runQuery(("DELETE FROM tasks WHERE id=" + task.getId()));
+            this.refreshLists();
+        }catch(Exception exc){
+            exc.printStackTrace();
+        }*/
     }
 }

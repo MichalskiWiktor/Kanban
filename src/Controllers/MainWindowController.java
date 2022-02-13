@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.Objects;
 
 ///// In projects section a list of projects title description img technology etc
@@ -34,9 +35,16 @@ public class MainWindowController{
     @FXML private Pane topPane;
     private double xOffset = 0;
     private double yOffset = 0;
-    private final Database database = new Database ();
 
     @FXML private void initialize(){
+        try{
+            Database.connectToDatabase();
+            Database.downloadListOfTask();
+        }
+        catch(NullPointerException e){
+            System.out.println("Database connection error");
+            //createPopUpWindow("Database error");
+        }
         this.loadDataToLists();
         this.loadImg();
         this.waitEvent();
@@ -78,7 +86,7 @@ public class MainWindowController{
         ObservableList<Task> tasksToDo = FXCollections.observableArrayList();
         ObservableList<Task> tasksInProgresses = FXCollections.observableArrayList();
         ObservableList<Task> tasksDone = FXCollections.observableArrayList();
-        for(Task task : this.database.getTasks ()) {
+        for(Task task : Database.getTasks ()) {
             if (task.getStatus() == 1) {
                 tasksToDo.add(task);
                 this.toDoList.setItems(tasksToDo);
@@ -125,31 +133,6 @@ public class MainWindowController{
         newWindow.showAndWaitWindow();
         this.refreshLists();*/
     }
-    /*After button is clicked it creates new window where it shows details about selected task*/
-   /* public void showTask(){
-        Task task = this.findSelectedTask();
-        if(task !=null){
-            Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/mainStyle.css", null, 358, 255);
-            newWindow.initWindow();
-            ShowDetailsWindowController scene4Controller = newWindow.getLoader().getController();
-            scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
-            newWindow.showAndWaitWindow();
-        }
-        else this.createPopUpWindow("You have to pick an element!!");
-    }*/
-    /*After button is clicked it creates new window where we can modify selected item*/
-    /*public void modifyTask(){
-        Task task = this.findSelectedTask();
-        if(task !=null){
-            Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/mainStyle.css", null, 342, 353);
-            newWindow.initWindow();
-            ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
-            scene4Controller.transferData(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getDate(), task.getStatus());
-            newWindow.showAndWaitWindow();
-            this.refreshLists();
-        }
-        else this.createPopUpWindow("You have to pick an element!!");
-    }*/
     /*After button is clicked selected item is deleted*/
     /*public void deleteTask(){
         Task task = this.findSelectedTask();
@@ -164,7 +147,7 @@ public class MainWindowController{
         else this.createPopUpWindow("You have to pick an element!!");
     }*/
     /*After button is clicked selected item is moved to the next listview and if it is in "done list" it will do nothing*/
-    public void moveTask(){
+   /* public void moveTask(){
         Task task = this.findSelectedTask();
         if(task !=null){
             try{
@@ -177,7 +160,7 @@ public class MainWindowController{
         //else this.createPopUpWindow("You have to pick an element!!");
     }
     /*Returns selected item*/
-    private Task findSelectedTask(){
+   /* private Task findSelectedTask(){
         Task task;
         if(this.database.getTasks ().contains(this.toDoList.getSelectionModel().getSelectedItem()))
             task = this.toDoList.getSelectionModel().getSelectedItem();
@@ -187,11 +170,11 @@ public class MainWindowController{
             task = this.doneList.getSelectionModel().getSelectedItem();
         else task = null;
         return task;
-    }
+    }*/
     /*private void createPopUpWindow(String message){
-        Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/mainStyle.css", "/data/photos/popUpIcon.png", 235, 92);
-        newWindow.showAndWaitWindow();
+        Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", null, 235, 92);
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        scene4Controller.transferMessage(message, null);
+        scene4Controller.transferMessage(message);
+        newWindow.showAndWaitWindow();
     }*/
 }

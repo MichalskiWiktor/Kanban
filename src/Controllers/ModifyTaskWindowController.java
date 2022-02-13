@@ -7,7 +7,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,11 +45,11 @@ public class ModifyTaskWindowController extends MainWindowController{
 and sets default tile and description if there is none*/
     private boolean checkIfAllInsertedDataIsCorrectAndFixIt(){
         if(this.modifiedTitle.getText().length()>50){
-            this.createPopUpWindow("Title is too big", false);
+            this.createPopUpWindow("Title is too big");
             return false;
         }
         else if(this.modifiedDescription.getText().length()>255){
-            this.createPopUpWindow("Description is too big", false);
+            this.createPopUpWindow("Description is too big");
             return false;
         }
         if(this.modifiedTitle.getText().length()==0)this.modifiedTitle.setText("There is a lack of title");
@@ -70,19 +69,18 @@ and sets default tile and description if there is none*/
                     default -> 0;
                 };
                 myStat.execute("UPDATE tasks SET title = '"+this.modifiedTitle.getText()+"', description = '"+this.modifiedDescription.getText()+"', priority = "+priorityNumber+", date = '"+this.modifiedDeadline.getValue()+"' WHERE id="+this.task.getId()+";");
-                this.createPopUpWindow("Task has been modified", true);
+                this.createPopUpWindow("Task has been modified");
             }
             catch(Exception exc){
                 exc.printStackTrace();
             }
         }
     }
-    private void createPopUpWindow(String message, boolean closeWindow){
+    private void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/mainStyle.css", "/data/photos/popUpIcon.png",  235, 92);
         newWindow.initWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        if(closeWindow)scene4Controller.transferMessage(message, (Stage) this.modifiedDescription.getScene().getWindow());
-        else scene4Controller.transferMessage(message, null);
+        scene4Controller.transferMessage(message);
         newWindow.showWindow();
     }
 }

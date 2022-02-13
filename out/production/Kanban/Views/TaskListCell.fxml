@@ -15,7 +15,7 @@
       <MenuButton fx:id="taskEventBtn" layoutX="252.0" layoutY="11.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="35.0">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#showTask" styleClass="menuItem" text="Show" />
-            <MenuItem mnemonicParsing="false" styleClass="menuItem" text="Edit" />
+            <MenuItem mnemonicParsing="false" onAction="#editTask" styleClass="menuItem" text="Edit" />
             <MenuItem mnemonicParsing="false" styleClass="menuItem" text="Delete" />
          </items>
       </MenuButton>

@@ -58,11 +58,11 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <TextField fx:id="dbPassword" prefHeight="42.0" prefWidth="191.0" promptText="np. password" style="-fx-background-color: #1d2124;" styleClass="settingsTextField">
+            <PasswordField fx:id="dbPassword" prefHeight="42.0" prefWidth="191.0" promptText="np. password" style="-fx-background-color: #1d2124;" styleClass="settingsTextField">
                <font>
                   <Font size="15.0" />
                </font>
-            </TextField>
+            </PasswordField>
          </children>
       </HBox>
       <HBox prefHeight="40.0" prefWidth="300.0">

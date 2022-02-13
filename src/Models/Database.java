@@ -1,16 +1,16 @@
 package Models;
 
 import Controllers.PopUpWindowController;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Database {
-    /*database static */
+    /*Variables*/
     private static String name = "kanban", port = "3306", user = "root", password = "", status;
-
+    private static final ArrayList<Task> tasks = new ArrayList<>();
+    private static Connection connection;
+    /*Get & Set functions*/
     public static String getName(){
         return name;
     }
@@ -41,49 +41,50 @@ public class Database {
     public static void setUser(String newUser){
         user = newUser;
     }
-
-    private final ArrayList<Task> tasks = new ArrayList<>();
-    public ArrayList<Task> getTasks(){
-        return this.tasks;
+    public static ArrayList<Task> getTasks(){
+        return tasks;
     }
 
-    public Database(){
-        this.downloadListOfTask();
-    }
-    public ResultSet runQuery(String query){
+    public static void connectToDatabase(){
         try{
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:"+getPort()+"/"+getName()+"", ""+getUser()+"", ""+getPassword()+"");
-            Statement myStat = myConn.createStatement();
+            connection = myConn;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public static ResultSet runQuery(String query){
+        try{
+            Statement myStat = connection.createStatement();
             if(query.startsWith("UPDATE") || query.startsWith("DELETE"))myStat.executeUpdate(query);
             else if(query.startsWith("INSERT"))myStat.execute(query);
             else return myStat.executeQuery(query);
-            this.tasks.clear ();
-            this.downloadListOfTask ();
         }
         catch(Exception exc){
             exc.printStackTrace();
         }
         return null;
     }
-    public void databaseConnectionError(){
-        this.createPopUpWindow("Database error!!!");
+    public static void databaseConnectionError(){
+        createPopUpWindow("Database error!!!");
     }
     /*Gets data from database and inserts it into order list*/
-    private void downloadListOfTask(){
+    public static void downloadListOfTask(){
         try{
-            ResultSet myRes = this.runQuery("SELECT * FROM tasks");
+            tasks.clear();
+            ResultSet myRes = runQuery("SELECT * FROM tasks");
             while(myRes.next())
-                this.tasks.add(new Task(myRes.getInt("id"), myRes.getInt("priority"), myRes.getInt("status"), myRes.getString("description"), myRes.getString("title"), myRes.getString("date")));
+                tasks.add(new Task(myRes.getInt("id"), myRes.getInt("priority"), myRes.getInt("status"), myRes.getString("description"), myRes.getString("title"), myRes.getString("date")));
         }
         catch(Exception exc){
-            this.databaseConnectionError();
+            databaseConnectionError();
             exc.printStackTrace();
         }
     }
-    private void createPopUpWindow(String message){
+    private static void createPopUpWindow(String message){
         Window newWindow = new Window("PopUp Window", "/Views/PopUpWindow.fxml", "/styles/style.css", "/data/photos/popUpIcon.png",  235, 92);
         newWindow.showWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
-        scene4Controller.transferMessage(message, null);
+        scene4Controller.transferMessage(message);
     }
 }
