@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 
 public class SettingsWindowController{
+    public ToggleGroup databaseStatus;
     @FXML private TextField dbName;
     @FXML private TextField dbPort;
     @FXML private TextField dbUser;
