@@ -87,7 +87,7 @@
                             </items>
                         </MenuButton>
                     </Pane>
-                    <ListView fx:id="toDoList" onMouseClicked="#handleMouseClickToDoList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" />
+                    <ListView fx:id="toDoList" onMouseClicked="#handleMouseClickToDoList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
                 <VBox layoutX="361.0" layoutY="173.0" prefHeight="530.0" prefWidth="330.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
@@ -103,7 +103,7 @@
                             </items>
                         </MenuButton>
                     </Pane>
-                    <ListView fx:id="inProgressList" onMouseClicked="#handleMouseClickInProgressList" prefHeight="497.0" prefWidth="306.0" style="-fx-background-color: #171a1c;" />
+                    <ListView fx:id="inProgressList" onMouseClicked="#handleMouseClickInProgressList" prefHeight="497.0" prefWidth="306.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
                 <VBox layoutX="706.0" layoutY="173.0" prefHeight="530.0" prefWidth="330.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
@@ -119,7 +119,7 @@
                             </items>
                         </MenuButton>
                     </Pane>
-                    <ListView fx:id="doneList" onMouseClicked="#handleMouseClickDoneList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" />
+                    <ListView fx:id="doneList" onMouseClicked="#handleMouseClickDoneList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
             <Label layoutX="31.0" layoutY="52.0" text="Tasks" textFill="WHITE">
                <font>
@@ -131,10 +131,6 @@
                 <ImageView fitHeight="14.0" fitWidth="15.0" layoutX="292.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../data/photos/miniSettings.png" />
                 </ImageView>
-                <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="823.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../data/photos/bellIcon.png" />
-                </ImageView>
-            <ComboBox layoutX="871.0" layoutY="18.0" prefWidth="150.0" />
             </AnchorPane>
         </center>
     </BorderPane>

@@ -81,6 +81,7 @@
 -fx-padding: 0;
 }
 
+
 /*List-Cell Window*/
 #dateBox{
 -fx-padding:10px;
@@ -108,11 +109,23 @@
 #taskEventBtn{
 -fx-background-color: #202326;
 }
+.context-menu{
+-fx-background-color: #202326;
+}
 .menuItem{
 -fx-background-color: #202326;
+-fx-text-fill:white;
+}
+.menuItem:hover{
+-fx-background-color: #54585c;
+-fx-cursor:hand;
+}
+.menuItem .label{
+-fx-text-fill:white;
 }
 /*Settings*/
 .settingsTextField{
 -fx-text-fill: #fff;
 }
+
 
