@@ -48,10 +48,11 @@
 }
 .list-view .scroll-bar:vertical {
 -fx-scale-x: 0;
+
 }
-.list-view .scroll-bar:horizontal {
+/*.list-view .scroll-bar:horizontal {
 -fx-scale-x: 0;
-}
+}*/
 .list-cell{
 -fx-background-color:#202326;
 -fx-padding: 10px;

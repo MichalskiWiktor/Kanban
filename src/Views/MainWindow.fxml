@@ -72,15 +72,15 @@
             </VBox>
         </left>
         <center>
-            <AnchorPane fx:id="middleSection" prefHeight="700.0" prefWidth="1057.0" style="-fx-background-color: #171a1c;" BorderPane.alignment="CENTER">
-                <VBox layoutX="15.0" layoutY="173.0" prefHeight="530.0" prefWidth="330.0" styleClass="tasksVBoxLists">
+            <AnchorPane fx:id="middleSection" prefHeight="681.0" prefWidth="1057.0" style="-fx-background-color: #171a1c;" BorderPane.alignment="CENTER">
+                <VBox layoutX="15.0" layoutY="173.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
                         <Label contentDisplay="CENTER" layoutX="13.0" layoutY="8.0" prefHeight="23.0" prefWidth="108.0" text="Upcoming" textFill="#5b5d5e">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <MenuButton fx:id="upcomingBtn" layoutX="266.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" styleClass="mainMenuBtn">
+                        <MenuButton fx:id="upcomingBtn" layoutX="276.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" styleClass="mainMenuBtn">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Add Task" />
                                 <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -89,14 +89,14 @@
                     </Pane>
                     <ListView fx:id="toDoList" onMouseClicked="#handleMouseClickToDoList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
-                <VBox layoutX="361.0" layoutY="173.0" prefHeight="530.0" prefWidth="330.0" styleClass="tasksVBoxLists">
+                <VBox layoutX="361.0" layoutY="173.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
                         <Label contentDisplay="CENTER" layoutX="13.0" layoutY="3.0" prefHeight="23.0" prefWidth="108.0" text="In work" textFill="#5b5d5e">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <MenuButton fx:id="inworkBtn" layoutX="266.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" styleClass="mainMenuBtn">
+                        <MenuButton fx:id="inworkBtn" layoutX="276.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" styleClass="mainMenuBtn">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Add Task" />
                                 <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -105,14 +105,14 @@
                     </Pane>
                     <ListView fx:id="inProgressList" onMouseClicked="#handleMouseClickInProgressList" prefHeight="497.0" prefWidth="306.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
-                <VBox layoutX="706.0" layoutY="173.0" prefHeight="530.0" prefWidth="330.0" styleClass="tasksVBoxLists">
+                <VBox layoutX="706.0" layoutY="173.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
                         <Label contentDisplay="CENTER" layoutX="13.0" layoutY="3.0" prefHeight="23.0" prefWidth="108.0" text="Complete" textFill="#5b5d5e">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <MenuButton fx:id="completeBtn" layoutX="266.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" styleClass="mainMenuBtn">
+                        <MenuButton fx:id="completeBtn" layoutX="276.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" styleClass="mainMenuBtn">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Add Task" />
                                 <MenuItem mnemonicParsing="false" text="Action 2" />
