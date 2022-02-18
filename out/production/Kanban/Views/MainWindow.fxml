@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="735.0" prefWidth="1232.0" style="-fx-background-color: #fff;" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1232.0" style="-fx-background-color: #fff;" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainWindowController">
     <BorderPane layoutX="-1.0" layoutY="-2.0" prefHeight="307.0" prefWidth="544.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
             <Pane fx:id="topPane" prefHeight="31.0" prefWidth="1232.0" style="-fx-background-color: #171a1c;" BorderPane.alignment="CENTER">
@@ -19,7 +19,7 @@
         </top>
         <left>
             <VBox fx:id="leftSection" prefHeight="643.0" prefWidth="175.0" style="-fx-background-color: #1d2124;" BorderPane.alignment="CENTER">
-                <Label alignment="CENTER" layoutX="14.0" layoutY="61.0" prefHeight="124.0" prefWidth="175.0" text="KANBAN" textFill="#db521b">
+                <Label alignment="CENTER" layoutX="14.0" layoutY="61.0" prefHeight="96.0" prefWidth="175.0" text="KANBAN" textFill="#db521b">
                     <font>
                         <Font name="Arial Bold" size="32.0" />
                     </font>
@@ -72,8 +72,8 @@
             </VBox>
         </left>
         <center>
-            <AnchorPane fx:id="middleSection" prefHeight="700.0" prefWidth="1057.0" style="-fx-background-color: #171a1c;" BorderPane.alignment="CENTER">
-                <VBox layoutX="15.0" layoutY="173.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
+            <AnchorPane fx:id="middleSection" prefHeight="682.0" prefWidth="1057.0" style="-fx-background-color: #171a1c;" BorderPane.alignment="CENTER">
+                <VBox layoutX="15.0" layoutY="143.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
                         <Label contentDisplay="CENTER" layoutX="13.0" layoutY="8.0" prefHeight="23.0" prefWidth="108.0" text="Upcoming" textFill="#5b5d5e">
                             <font>
@@ -89,7 +89,7 @@
                     </Pane>
                     <ListView fx:id="toDoList" onMouseClicked="#handleMouseClickToDoList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
-                <VBox layoutX="361.0" layoutY="173.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
+                <VBox layoutX="361.0" layoutY="143.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
                         <Label contentDisplay="CENTER" layoutX="13.0" layoutY="3.0" prefHeight="23.0" prefWidth="108.0" text="In work" textFill="#5b5d5e">
                             <font>
@@ -105,7 +105,7 @@
                     </Pane>
                     <ListView fx:id="inProgressList" onMouseClicked="#handleMouseClickInProgressList" prefHeight="497.0" prefWidth="306.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
-                <VBox layoutX="706.0" layoutY="173.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
+                <VBox layoutX="706.0" layoutY="143.0" prefHeight="530.0" prefWidth="340.0" styleClass="tasksVBoxLists">
                     <Pane prefHeight="35.0" prefWidth="280.0">
                         <Label contentDisplay="CENTER" layoutX="13.0" layoutY="3.0" prefHeight="23.0" prefWidth="108.0" text="Complete" textFill="#5b5d5e">
                             <font>
@@ -121,14 +121,14 @@
                     </Pane>
                     <ListView fx:id="doneList" onMouseClicked="#handleMouseClickDoneList" prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #171a1c;" styleClass="tasklists" />
                 </VBox>
-            <Label layoutX="31.0" layoutY="52.0" text="Tasks" textFill="WHITE">
+            <Label layoutX="31.0" layoutY="22.0" text="Tasks" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <TextField fx:id="searchTextField" layoutX="31.0" layoutY="120.0" promptText="Search task..." />
-            <TextField fx:id="filterTextField" layoutX="196.0" layoutY="120.0" prefHeight="25.0" prefWidth="82.0" promptText="Filter..." />
-                <ImageView fitHeight="14.0" fitWidth="15.0" layoutX="292.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="searchTextField" layoutX="31.0" layoutY="90.0" promptText="Search task..." />
+            <TextField fx:id="filterTextField" layoutX="196.0" layoutY="90.0" prefHeight="25.0" prefWidth="82.0" promptText="Filter..." />
+                <ImageView fitHeight="14.0" fitWidth="15.0" layoutX="292.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../data/photos/miniSettings.png" />
                 </ImageView>
             </AnchorPane>

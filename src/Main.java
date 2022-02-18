@@ -17,7 +17,7 @@ public class Main extends Application {
             root.setId("rootnode");
             primaryStage.initStyle (StageStyle.TRANSPARENT);
 
-            Scene scene = new Scene (root, 1232, 740);
+            Scene scene = new Scene (root, 1232, 715);
             scene.setFill(Color.TRANSPARENT);
             primaryStage.setScene(scene);
             primaryStage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles/style.css")).toExternalForm());
