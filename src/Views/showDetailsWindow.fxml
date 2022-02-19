@@ -5,83 +5,74 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="442.0" prefWidth="660.0" style="-fx-background-color: #202326;" styleClass="pane"
-            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controllers.ShowDetailsWindowController">
-   <Label fx:id="titleLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="137.0"
-          text="Title" textAlignment="CENTER" textFill="#db521b">
+<AnchorPane prefHeight="442.0" prefWidth="660.0" style="-fx-background-color: #202326;" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShowDetailsWindowController">
+   <Label fx:id="titleLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="137.0" text="Title" textAlignment="CENTER" textFill="#db521b">
       <font>
-         <Font size="32.0"/>
+         <Font size="32.0" />
       </font>
    </Label>
-   <HBox layoutX="499.0" layoutY="24.0" prefHeight="28.0" prefWidth="137.0" spacing="5.0"
-         style="-fx-background-color: #2c2e30;" styleClass="dateBox">
+   <HBox layoutX="504.0" layoutY="24.0" prefHeight="28.0" prefWidth="127.0" spacing="5.0" style="-fx-background-color: #2c2e30;" styleClass="dateBox">
       <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-         <Image url="@../data/photos/clockIcon.png"/>
+         <Image url="@../data/photos/clockIcon.png" />
       </ImageView>
-      <Label fx:id="dateLabel" prefHeight="29.0" prefWidth="111.0" styleClass="date" text="JULY 7, 2021"
-             textFill="#6f7174">
+      <Label fx:id="dateLabel" prefHeight="28.0" prefWidth="137.0" styleClass="date" text="2022-06-06" textFill="#6f7174">
          <font>
-            <Font name="System Bold" size="16.0"/>
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
    </HBox>
-   <Label fx:id="descriptionLabel" layoutX="10.0" layoutY="67.0" prefHeight="106.0" prefWidth="463.0"
-          text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
-          textFill="WHITE" wrapText="true">
+   <Label fx:id="descriptionLabel" layoutX="10.0" layoutY="67.0" prefHeight="106.0" prefWidth="463.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum" textFill="WHITE" wrapText="true">
       <font>
-         <Font size="16.0"/>
+         <Font size="16.0" />
       </font>
    </Label>
-   <Label fx:id="priorityLabel" layoutX="511.0" layoutY="67.0" styleClass="priorityLbl" text="LOW PRIORITY"
-          textFill="#155b51">
+   <Label fx:id="priorityLabel" layoutX="511.0" layoutY="67.0" styleClass="priorityLbl" text="LOW PRIORITY" textFill="#155b51">
       <font>
-         <Font name="System Bold" size="16.0"/>
+         <Font name="System Bold" size="16.0" />
       </font>
    </Label>
-   <Label layoutX="540.0" layoutY="101.0" styleClass="categoriesLbl" text="DESIGN" textFill="#83868a">
+   <Label layoutX="546.0" layoutY="114.0" styleClass="categoriesLbl" text="DESIGN" textFill="#83868a">
       <font>
-         <Font size="16.0"/>
+         <Font size="16.0" />
       </font>
    </Label>
-   <Label layoutX="539.0" layoutY="132.0" styleClass="categoriesLbl" text="CODING" textFill="#83868a">
+   <Label layoutX="543.0" layoutY="161.0" styleClass="categoriesLbl" text="CODING" textFill="#83868a">
       <font>
-         <Font size="16.0"/>
+         <Font size="16.0" />
       </font>
    </Label>
    <VBox layoutX="250.0" layoutY="173.0" prefHeight="257.0" prefWidth="223.0">
       <Label alignment="CENTER" prefHeight="30.0" prefWidth="227.0" text="Attached Files" textFill="WHITE">
          <font>
-            <Font size="20.0"/>
+            <Font size="20.0" />
          </font>
       </Label>
-      <ListView prefHeight="226.0" prefWidth="231.0"/>
+      <ListView prefHeight="226.0" prefWidth="231.0" />
    </VBox>
    <VBox layoutX="14.0" layoutY="173.0" prefHeight="257.0" prefWidth="223.0">
       <Label alignment="CENTER" prefHeight="30.0" prefWidth="227.0" text="Attached Notes" textFill="WHITE">
          <font>
-            <Font size="20.0"/>
+            <Font size="20.0" />
          </font>
       </Label>
-      <ListView prefHeight="226.0" prefWidth="231.0"/>
+      <ListView prefHeight="226.0" prefWidth="231.0" />
    </VBox>
-   <Label layoutX="500.0" layoutY="161.0" styleClass="categoriesLbl" text="PROBLEM SOLVING" textFill="#83868a">
+   <Label layoutX="503.0" layoutY="209.0" styleClass="categoriesLbl" text="PROBLEM SOLVING" textFill="#83868a">
       <font>
-         <Font size="16.0"/>
+         <Font size="16.0" />
       </font>
    </Label>
-   <ImageView fitHeight="118.0" fitWidth="113.0" layoutX="514.0" layoutY="302.0" pickOnBounds="true"
-              preserveRatio="true">
-      <Image url="@../data/photos/kanbanIcon.png"/>
+   <ImageView fitHeight="118.0" fitWidth="113.0" layoutX="515.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../data/photos/kanbanIcon.png" />
    </ImageView>
-   <Label layoutX="530.0" layoutY="221.0" prefHeight="34.0" prefWidth="83.0" text="Project:" textFill="WHITE">
+   <Label layoutX="530.0" layoutY="268.0" prefHeight="34.0" prefWidth="83.0" text="Project:" textFill="WHITE">
       <font>
-         <Font size="23.0"/>
+         <Font size="23.0" />
       </font>
    </Label>
-   <Label layoutX="534.0" layoutY="255.0" text="Kanban" textFill="WHITE">
+   <Label layoutX="534.0" layoutY="302.0" text="Kanban" textFill="WHITE">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
 </AnchorPane>

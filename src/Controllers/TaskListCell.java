@@ -72,7 +72,7 @@ public class TaskListCell extends ListCell<Task> implements Initializable {
         this.model = item;
     }
     public void showTask(){
-        Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/style.css", null, 358, 255);
+        Window newWindow = new Window("Details", "/Views/showDetailsWindow.fxml", "/styles/style.css", null, 660, 442);
         newWindow.initWindow();
         ShowDetailsWindowController scene4Controller = newWindow.getLoader().getController();
         scene4Controller.transferData(this.model.getId(), this.model.getTitle(), this.model.getDescription(), this.model.getPriority(), this.model.getDate(), this.model.getStatus());

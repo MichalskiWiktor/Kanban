@@ -1,9 +1,6 @@
 #rootnode {
 -fx-background-radius: 30 30 30 30;
 }
-.pane{
--fx-background-radius: 30 30 30 30;
-}
 /*Top section*/
 #topPane{
 -fx-background-radius: 20 20 0 0;
@@ -48,7 +45,11 @@
 }
 .list-view .scroll-bar:vertical {
 -fx-scale-x: 0;
+
 }
+/*.list-view .scroll-bar:horizontal {
+-fx-scale-x: 0;
+}*/
 .list-cell{
 -fx-background-color:#202326;
 -fx-padding: 10px;
@@ -80,7 +81,7 @@
 
 
 /*List-Cell Window*/
-.dateBox{
+#dateBox{
 -fx-padding:10px;
 -fx-background-radius: 10;
 }
@@ -124,5 +125,3 @@
 .settingsTextField{
 -fx-text-fill: #fff;
 }
-
-
