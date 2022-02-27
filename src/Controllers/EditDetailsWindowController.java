@@ -13,9 +13,10 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.time.LocalDate;
 
-public class ModifyTaskWindowController extends MainWindowController{
-    @FXML private TextField modifiedTitle;
-    @FXML private ChoiceBox <String> priorityChoiceBox;
+public class EditDetailsWindowController extends MainWindowController{
+    @FXML
+    private TextField modifiedTitle;
+    @FXML private ChoiceBox<String> priorityChoiceBox;
     @FXML private DatePicker modifiedDeadline;
     @FXML private TextArea modifiedDescription;
     private Task task;
@@ -43,7 +44,7 @@ public class ModifyTaskWindowController extends MainWindowController{
     }
     /*Checks if inserted title and description are not too long
 and sets default tile and description if there is none*/
-    private boolean checkIfAllInsertedDataIsCorrectAndFixIt(){
+   /* private boolean checkIfAllInsertedDataIsCorrectAndFixIt(){
         if(this.modifiedTitle.getText().length()>50){
             this.createPopUpWindow("Title is too big");
             return false;
@@ -57,7 +58,7 @@ and sets default tile and description if there is none*/
         return true;
     }
     /*Inserts data to the database*/
-    public void sendModifiedTaskToDatabase(){
+   /* public void sendModifiedTaskToDatabase(){
         if(this.checkIfAllInsertedDataIsCorrectAndFixIt()){
             try{
                 Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kanban", "root", "");
@@ -82,5 +83,5 @@ and sets default tile and description if there is none*/
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
         scene4Controller.transferMessage(message);
         newWindow.showWindow();
-    }
+    }*/
 }

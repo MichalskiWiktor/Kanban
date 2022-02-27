@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="197.0" prefWidth="305.0" style="-fx-background-color: #202326;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TaskListCell">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showTask" prefHeight="197.0" prefWidth="305.0" style="-fx-background-color: #202326;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TaskListCell">
    <Label fx:id="title" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="222.0" text="New-app design UI" textFill="WHITE">
       <font>
          <Font name="System Bold" size="16.0" />
@@ -18,7 +18,7 @@
          <MenuItem mnemonicParsing="false" styleClass="menuItem" text="Delete" />
       </items>
    </MenuButton>
-   <HBox fx:id="dateBox" layoutX="176.0" layoutY="60.0" prefHeight="21.0" prefWidth="114.0" spacing="5.0" style="-fx-background-color: #2c2e30;">
+   <HBox fx:id="dateBox" layoutX="176.0" layoutY="60.0" prefHeight="21.0" prefWidth="114.0" spacing="5.0" style="-fx-background-color: #2c2e30;" styleClass="dateBox">
       <ImageView fitHeight="21.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../data/photos/clockIcon.png" />
       </ImageView>

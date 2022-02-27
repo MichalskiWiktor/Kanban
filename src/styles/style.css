@@ -80,9 +80,13 @@
 }
 
 
-/*List-Cell Window*/
+/*List-Cell, showDetails Windows*/
 #dateBox{
--fx-padding:10px;
+-fx-padding:4px;
+-fx-background-radius: 10;
+}
+.dateBox{
+-fx-padding:5px;
 -fx-background-radius: 10;
 }
 .priorityLbl{

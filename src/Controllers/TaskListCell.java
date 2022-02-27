@@ -79,11 +79,11 @@ public class TaskListCell extends ListCell<Task> implements Initializable {
         newWindow.showWindow();
     }
     public void editTask(){
-        Window newWindow = new Window("Modify Task", "/Views/ModifyTaskWindow.fxml", "/styles/style.css", null, 342, 353);
+        Window newWindow = new Window("Modify Task", "/Views/editDetailsWindow.fxml", "/styles/style.css", null, 660, 442);
         newWindow.initWindow();
-        ModifyTaskWindowController scene4Controller = newWindow.getLoader().getController();
+        EditDetailsWindowController scene4Controller = newWindow.getLoader().getController();
         scene4Controller.transferData(this.model.getId(), this.model.getTitle(), this.model.getDescription(), this.model.getPriority(), this.model.getDate(), this.model.getStatus());
-        newWindow.showAndWaitWindow();
+        newWindow.showWindow();
         ////refresh listview somehow
     }
     public void deleteTask(){
