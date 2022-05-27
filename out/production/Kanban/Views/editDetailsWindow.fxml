@@ -11,29 +11,74 @@
         <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../data/photos/clockIcon.png" />
         </ImageView>
-        <Label prefHeight="28.0" prefWidth="104.0" styleClass="date" text="2022-06-06" textFill="#6f7174">
-            <font>
-                <Font name="System Bold" size="16.0" />
-            </font>
-        </Label>
+      <TextField prefHeight="32.0" prefWidth="97.0" style="-fx-background-color: #2c2e30;" text="2022-06-06" />
     </HBox>
     <VBox layoutX="250.0" layoutY="173.0" prefHeight="257.0" prefWidth="223.0">
-        <Label alignment="CENTER" prefHeight="30.0" prefWidth="227.0" text="Attached Files" textFill="WHITE">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
+      <HBox prefHeight="40.0" prefWidth="223.0">
+         <children>
+              <Label alignment="CENTER" prefHeight="30.0" prefWidth="170.0" text="Attached Files" textFill="WHITE">
+                  <font>
+                      <Font size="20.0" />
+                  </font>
+              </Label>
+            <Button graphicTextGap="0.0" mnemonicParsing="false" prefWidth="25.0" text="+">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefWidth="25.0" text="-">
+               <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
         <ListView prefHeight="226.0" prefWidth="231.0" />
     </VBox>
     <VBox layoutX="14.0" layoutY="173.0" prefHeight="257.0" prefWidth="223.0">
-        <Label alignment="CENTER" prefHeight="30.0" prefWidth="227.0" text="Attached Notes" textFill="WHITE">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
+        <HBox prefHeight="40.0" prefWidth="223.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="170.0" text="Attached Notes" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Button graphicTextGap="0.0" mnemonicParsing="false" prefWidth="25.0" text="+">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets top="5.0" />
+                    </HBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" prefWidth="25.0" text="-">
+                    <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
         <ListView prefHeight="226.0" prefWidth="231.0" />
     </VBox>
     <VBox layoutX="488.0" layoutY="61.0" prefHeight="200.0" prefWidth="160.0">
+      <HBox prefHeight="30.0" prefWidth="88.0">
+          <Button alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" mnemonicParsing="false" prefWidth="25.0" text="+">
+              <font>
+                  <Font name="System Bold" size="12.0" />
+              </font>
+              <HBox.margin>
+                  <Insets top="5.0" />
+              </HBox.margin>
+          </Button>
+          <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefWidth="25.0" text="-">
+              <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+              </HBox.margin>
+          </Button>
+      </HBox>
         <Label alignment="CENTER" prefHeight="25.0" prefWidth="160.0" styleClass="priorityLbl" text="LOW PRIORITY" textFill="#155b51">
             <font>
                 <Font name="System Bold" size="16.0" />
@@ -75,14 +120,13 @@
             <Font size="23.0" />
         </font>
     </Label>
-    <Label layoutX="534.0" layoutY="302.0" text="Kanban" textFill="WHITE">
-        <font>
-            <Font size="20.0" />
-        </font>
-    </Label>
-   <TextField layoutX="14.0" layoutY="-8.0" prefHeight="48.0" prefWidth="223.0" style="-fx-background-color: #202326;" text="Title">
+   <TextField layoutX="14.0" layoutY="-8.0" prefHeight="48.0" prefWidth="223.0" style="-fx-background-color: #202326; -fx-font: #6f7174;" text="Title">
       <font>
          <Font size="32.0" />
       </font></TextField>
    <TextArea layoutX="14.0" layoutY="49.0" prefHeight="121.0" prefWidth="380.0" style="-fx-background-color: #202326;" />
+   <TextField layoutX="515.0" layoutY="302.0" prefHeight="30.0" prefWidth="113.0" style="-fx-background-color: #202326;" text="Kanban">
+      <font>
+         <Font size="16.0" />
+      </font></TextField>
 </AnchorPane>

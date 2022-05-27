@@ -5,12 +5,15 @@ import Models.Window;
 import Models.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -32,6 +35,7 @@ public class MainWindowController{
     @FXML private MenuButton upcomingBtn;
     @FXML private MenuButton inworkBtn;
     @FXML private MenuButton completeBtn;
+    @FXML private MenuItem addTask;
     @FXML private Pane topPane;
     private double xOffset = 0;
     private double yOffset = 0;
@@ -67,7 +71,6 @@ public class MainWindowController{
             Stage stage = (Stage) this.toDoList.getScene().getWindow();
             stage.setIconified(true);
         });
-
         this.topPane.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
@@ -76,6 +79,9 @@ public class MainWindowController{
             Stage stage = (Stage)topPane.getScene ().getWindow ();
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
+        });
+        this.addTask.setOnAction((event) -> {
+            addNewTask();
         });
     }
     /*Inserts data from order list into listviews*/
@@ -128,10 +134,10 @@ public class MainWindowController{
     }
     /*After button is clicked it creates new window where we can add new task*/
     public void addNewTask(){
-        /*Window newWindow = new Window("Add New Task", "/Views/AddTaskWindow.fxml", "/styles/mainStyle.css", null,  342, 353);
+        Window newWindow = new Window("Add New Task", "/Views/AddTaskWindow.fxml", "/styles/style.css", null,  342, 353);
         newWindow.initWindow();
         newWindow.showAndWaitWindow();
-        this.refreshLists();*/
+        this.refreshLists();
     }
     /*After button is clicked selected item is deleted*/
     /*public void deleteTask(){
