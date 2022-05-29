@@ -7,6 +7,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 import java.time.LocalDate;
 
 public class AddNewTaskWindowController extends MainWindowController{
@@ -14,12 +18,38 @@ public class AddNewTaskWindowController extends MainWindowController{
     @FXML private ChoiceBox <String> priorityChoiceBox;
     @FXML private DatePicker newDeadline;
     @FXML private TextArea newDescription;
+    @FXML private Pane topPane;
+    @FXML private ImageView closeImg;
+    @FXML private ImageView minimizeImg;
     private final Database database = new Database ();
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @FXML private void initialize(){
+        System.out.println("ok");
         this.loadItemsToChoiceBox();
         this.setDefaultDeadline();
         this.priorityChoiceBox.setValue("Low");
+        this.waitEvent();
+    }
+    public void waitEvent(){
+        this.closeImg.setOnMousePressed (event ->{
+            Stage stage = (Stage) this.newDescription.getScene().getWindow();
+            stage.close();
+        });
+        this.minimizeImg.setOnMousePressed (event ->{
+            Stage stage = (Stage) this.newDescription.getScene().getWindow();
+            stage.setIconified(true);
+        });
+        this.topPane.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        this.topPane.setOnMouseDragged(event -> {
+            Stage stage = (Stage)topPane.getScene ().getWindow ();
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
     }
     /*Sets possible choices*/
     private void loadItemsToChoiceBox(){
@@ -49,6 +79,7 @@ public class AddNewTaskWindowController extends MainWindowController{
     }
     /*Inserts data to the database*/
     public void addNewRecordToDatabase(){
+        System.out.println("ok2");
         int priorityNumber = switch (this.priorityChoiceBox.getValue()) {
             case "Low" -> 1;
             case "Medium" -> 2;

@@ -1,0 +1,9 @@
+#rootnode {
+-fx-background-radius: 20;
+}
+#closeImg:hover{
+-fx-cursor:hand;
+}
+#minimizeImg:hover{
+-fx-cursor:hand;
+}

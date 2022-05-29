@@ -1,39 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="353.0" prefWidth="342.0" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddNewTaskWindowController">
-   <VBox layoutX="28.0" layoutY="61.0" prefHeight="270.0" prefWidth="287.0">
-      <HBox prefHeight="31.0" prefWidth="212.0">
-         <Label alignment="CENTER" prefHeight="25.0" prefWidth="90.0" styleClass="labels" text="Title:">
-            <font>
-               <Font size="16.0"/>
-            </font>
-         </Label>
-         <TextField fx:id="newTitle" prefHeight="25.0" prefWidth="174.0"/>
-      </HBox>
-      <HBox prefHeight="32.0" prefWidth="287.0">
-         <Label alignment="CENTER" prefHeight="25.0" prefWidth="90.0" styleClass="labels" text="Priority:">
-            <font>
-               <Font size="16.0"/>
-            </font>
-         </Label>
-         <ChoiceBox fx:id="priorityChoiceBox" prefHeight="25.0" prefWidth="174.0"/>
-      </HBox>
-      <HBox prefHeight="30.0" prefWidth="287.0">
-         <Label alignment="CENTER" prefHeight="25.0" prefWidth="90.0" styleClass="labels" text="Deadline:">
-            <font>
-               <Font size="16.0"/>
-            </font>
-         </Label>
-         <DatePicker fx:id="newDeadline" editable="false"/>
-      </HBox>
-      <TextArea fx:id="newDescription" layoutX="45.0" layoutY="177.0" prefHeight="123.0" prefWidth="257.0"/>
-      <AnchorPane prefHeight="55.0" prefWidth="287.0">
-         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="15.0" mnemonicParsing="false"
-                 onAction="#addNewRecordToDatabase" text="Add new task"/>
-      </AnchorPane>
-   </VBox>
-</AnchorPane>
+<VBox prefHeight="335.0" prefWidth="342.0" style="-fx-background-color: #171a1c;" styleClass="pane" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddNewTaskWindowController">
+   <Pane fx:id="topPane" prefHeight="33.0" prefWidth="342.0" BorderPane.alignment="CENTER">
+      <ImageView fx:id="closeImg" fitHeight="26.0" fitWidth="25.0" layoutX="306.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../data/photos/closeIcon.png" />
+      </ImageView>
+      <ImageView fx:id="minimizeImg" fitHeight="22.0" fitWidth="22.0" layoutX="280.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../data/photos/minimizeIcon.png" />
+      </ImageView>
+      <Label alignment="CENTER" layoutX="52.0" layoutY="-3.0" prefHeight="40.0" prefWidth="240.0" text="New Window" textFill="#db521b">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+   </Pane>
+   <HBox prefHeight="31.0" prefWidth="212.0">
+      <Label alignment="CENTER" prefHeight="25.0" prefWidth="90.0" styleClass="labels" text="Title:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="newTitle" prefHeight="25.0" prefWidth="174.0" />
+      <VBox.margin>
+         <Insets top="15.0" />
+      </VBox.margin>
+   </HBox>
+   <HBox prefHeight="32.0" prefWidth="287.0">
+      <Label alignment="CENTER" prefHeight="25.0" prefWidth="90.0" styleClass="labels" text="Priority:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="priorityChoiceBox" prefHeight="25.0" prefWidth="174.0" />
+      <VBox.margin>
+         <Insets top="15.0" />
+      </VBox.margin>
+   </HBox>
+   <HBox prefHeight="30.0" prefWidth="287.0">
+      <Label alignment="CENTER" prefHeight="25.0" prefWidth="90.0" styleClass="labels" text="Deadline:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="newDeadline" editable="false" />
+      <VBox.margin>
+         <Insets top="15.0" />
+      </VBox.margin>
+   </HBox>
+   <TextArea fx:id="newDescription" layoutX="45.0" layoutY="177.0" prefHeight="95.0" prefWidth="100.0">
+      <VBox.margin>
+         <Insets left="10.0" right="10.0" top="15.0" />
+      </VBox.margin></TextArea>
+   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addNewRecordToDatabase" prefHeight="25.0" prefWidth="345.0" text="Add new task">
+      <VBox.margin>
+         <Insets left="110.0" right="110.0" top="15.0" />
+      </VBox.margin>
+   </Button>
+</VBox>

@@ -134,7 +134,7 @@ public class MainWindowController{
     }
     /*After button is clicked it creates new window where we can add new task*/
     public void addNewTask(){
-        Window newWindow = new Window("Add New Task", "/Views/AddTaskWindow.fxml", "/styles/style.css", null,  342, 353);
+        Window newWindow = new Window("Add New Task", "/Views/AddNewTaskWindow.fxml", "/styles/smallWindowStyle.css", null,  342, 335);
         newWindow.initWindow();
         newWindow.showAndWaitWindow();
         this.refreshLists();
