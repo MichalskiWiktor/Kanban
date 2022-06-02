@@ -40,7 +40,9 @@ public class Window {
             stage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource(this.cssFile)).toExternalForm());
             this.stage = stage;*/
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(this.fxmlFile)));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(this.fxmlFile));
+            Parent root = fxmlLoader.load();
+            this.loader = fxmlLoader;
             root.setId("rootnode");
             Stage primaryStage = new Stage();
             primaryStage.initStyle (StageStyle.TRANSPARENT);

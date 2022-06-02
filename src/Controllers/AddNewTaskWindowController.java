@@ -26,7 +26,6 @@ public class AddNewTaskWindowController extends MainWindowController{
     private double yOffset = 0;
 
     @FXML private void initialize(){
-        System.out.println("ok");
         this.loadItemsToChoiceBox();
         this.setDefaultDeadline();
         this.priorityChoiceBox.setValue("Low");
@@ -79,7 +78,6 @@ public class AddNewTaskWindowController extends MainWindowController{
     }
     /*Inserts data to the database*/
     public void addNewRecordToDatabase(){
-        System.out.println("ok2");
         int priorityNumber = switch (this.priorityChoiceBox.getValue()) {
             case "Low" -> 1;
             case "Medium" -> 2;
@@ -93,7 +91,7 @@ public class AddNewTaskWindowController extends MainWindowController{
         else System.out.println ("error");
     }
     private void createPopUpWindow(String message){
-        Window newWindow = new Window("PopUp", "/Views/PopUpWindow.fxml", "/styles/mainStyle.css", "/data/photos/popUpIcon.png", 235, 92);
+        Window newWindow = new Window("PopUp", "/Views/PopUpWindow.fxml", "/styles/style.css", null, 260, 140);
         newWindow.initWindow();
         PopUpWindowController scene4Controller = newWindow.getLoader().getController();
         scene4Controller.transferMessage(message);

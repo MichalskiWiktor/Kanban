@@ -92,6 +92,7 @@ public class MainWindowController{
         ObservableList<Task> tasksToDo = FXCollections.observableArrayList();
         ObservableList<Task> tasksInProgresses = FXCollections.observableArrayList();
         ObservableList<Task> tasksDone = FXCollections.observableArrayList();
+        Database.downloadListOfTask();
         for(Task task : Database.getTasks ()) {
             if (task.getStatus() == 1) {
                 tasksToDo.add(task);
